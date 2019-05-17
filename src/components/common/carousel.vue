@@ -53,6 +53,32 @@ export default {
           title:"../../../static/img/panel_6.1.jpg",
         },
       ]
+      // imgList:[
+      //   {
+      //     url:"../../assets/img/panel_1.1.jpg",
+      //     title:"../../assets/img/panel_1.1.jpg",
+      //   },
+      //   {
+      //     url:"../../assets/img/panel_2.1.jpg",
+      //     title:"../../assets/img/panel_2.1.jpg",
+      //   },
+      //   {
+      //     url:"../../assets/img/panel_3.1.jpg",
+      //     title:"../../assets/img/panel_3.1.jpg",
+      //   },
+      //   {
+      //     url:"../../assets/img/panel_4.1.jpg",
+      //     title:"../../assets/img/panel_4.1.jpg",
+      //   },
+      //   {
+      //     url:"../../assets/img/panel_5.1.jpeg",
+      //     title:"../../assets/img/panel_5.1.jpg",
+      //   },
+      //   {
+      //     url:"../../assets/img/panel_6.1.jpeg",
+      //     title:"../../assets/img/panel_6.1.jpg",
+      //   },
+      // ]
     }
   },
   // computes
