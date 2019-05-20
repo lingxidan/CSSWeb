@@ -62,7 +62,7 @@ a {
 } */
 </style>
 <template>
-  <div id="app">
+  <div id="app" ref="app">
     <!-- <img src="./assets/logo.png"> -->
     <router-view/>
   </div>
@@ -70,14 +70,18 @@ a {
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  mounted(){
+    let screenWidth = document.documentElement.clientWidth || document.body.clientWidth
+    this.$refs.app.style.width = screenWidth + "px"
+  }
 }
 </script>
 
-<style>
+<style lang="less">
 @import url("../static/css/common.css");
+@import '../static/css/main';
 #app {
-  width: 1280px;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -28,7 +28,6 @@ export default {
 </script>
 <style lang="less" scoped>
 .main{
-  // width: 1366px;
   background-color: rgba(255, 255, 255, 0.6);
   // background-color: rgba(231, 206, 158, 0.7);
   padding: 8px;
