@@ -10,12 +10,8 @@
   </div>
   <div class="main">
     <div class="search" ref="search">
-      <el-input v-model="input3" placeholder="请输入内容" class="input-with-select">
-        <el-select v-model="select" slot="prepend" placeholder="请选择">
-          <el-option label="餐厅名" value="1"></el-option>
-          <el-option label="订单号" value="2"></el-option>
-          <el-option label="用户电话" value="3"></el-option>
-        </el-select>
+      <el-input v-model="input3"  placeholder="请输入内容" 
+      class="input-with-select searchInput">
         <el-button slot="append" icon="el-icon-search"></el-button>
       </el-input>
     </div>
@@ -33,19 +29,14 @@
       <li>注册</li>
       <!-- <li>我的信息</li> -->
       <li>聊天室</li>
-      <!-- <li>传播分享</li> -->
-      <el-popover
-        placement="top-start"
-        width="200"
-        trigger="hover">
-        <input type="text" id="copy_url" :data-clipboard-text="test" v-model="test"/>
-        <button ref="copy"  data-clipboard-action="copy"
+      <el-popover placement="top-start" trigger="hover">
+        <input type="text" id="copy_url" v-model="url" readonly/>
+        <button ref="copyBtn" class="copyBtn"
         data-clipboard-target="#copy_url" @click="copy">
           复制网址
         </button>
         <!-- <label id="copy_url" :data-clipboard-text="test">{{test}}</label> -->
         <li slot="reference">传播分享</li>
-        <!-- <li>传播分享</li> -->
       </el-popover>
     </ul>
   </div>
@@ -54,9 +45,7 @@
       <li>招募信息</li>
       <li>文章</li>
       <li>交流区</li>
-      <li class="top"
-      @mouseenter.self="handleTopEnter" 
-      @mouseleave.self="handleTopLeave">
+      <li class="top" @mouseenter.self="handleTopEnter" @mouseleave.self="handleTopLeave" @click="scrollTop">
         <p class="arrow" v-if="moveArrow">&lt;</p>
         <p v-else>返回顶部</p>
       </li>
@@ -76,11 +65,18 @@ export default {
   },
   data() {
     return {
-      test:"赋值",
+      url: "https://lingxidan.github.io/",
       panels: {},
       moveArrow: true,
       input3: "",
-      select: ""
+      select: "",
+      searchSel:[
+        {
+          id:0,
+          label:"学校",
+          value:"学校"
+        }
+      ]
     }
   },
   mounted() {
@@ -89,9 +85,12 @@ export default {
     this.panels.rightNav = this.$refs.rightNav
     this.panels.leftNav = this.$refs.leftNav
     this.handleScroll()
+    // 复制按钮
+    this.clipboard = new Clipboard(this.$refs.copyBtn)
     window.addEventListener('scroll', this.handleScroll, true); // 监听（绑定）滚轮滚动事件
   },
   methods: {
+    // 滚动条事件
     handleScroll() {
       let _top = this.panels.top
       let _search = this.panels.search
@@ -114,30 +113,62 @@ export default {
         _leftNav.style.opacity = "0"
       }
     },
-    handleTopEnter(){
+    // 回到顶部的鼠标移入移出
+    handleTopEnter() {
       this.moveArrow = false
     },
-    handleTopLeave(){
+    handleTopLeave() {
       this.moveArrow = true
     },
-    copy() {
-      // this.copyBtn = new this.$clipboard(this.$refs.copy)
-      // let clipboard = this.copyBtn  
-      let clipboard = new Clipboard(this.$refs.copy)
-      console.log(clipboard)
-      console.log("clipboard")
-      clipboard.on('success', e => {  
-        console.log("复制成功");//这里你如果引入了elementui的提示就可以用，没有就注释即可
-        // 释放内存  
-        clipboard.destroy()  
-      })  
-      clipboard.on('error', e => {  
-        // 不支持复制  
-        console.log('该浏览器不支持自动复制')  
-        // 释放内存  
-        clipboard.destroy()  
-      })  
+    // 回到页面顶部
+    scrollTop() {
+      let speed = 80
+      let timer = setInterval(function () {
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        window.scrollTo(0, scrollTop - speed)
+        if (scrollTop <= 0) {
+          clearInterval(timer)
+        }
+      }, 50)
+      window.addEventListener('click', function () {
+        clearInterval(timer)
+      }, true);
     },
+    // 复制网址分享
+    copy() {
+      let _this = this
+      let clipboard = _this.clipboard
+      clipboard.on('success', e => {
+        // alert("复制成功")
+        let h = _this.$createElement
+        _this.$notify({
+          title: '',
+          message: h('i', {
+            style: 'color: teal'
+          }, '复制成功'),
+          duration: 1500,
+          type: "success"
+        });
+        // 释放内存  
+        clipboard.destroy()
+        _this.clipboard = new Clipboard(_this.$refs.copyBtn)
+      })
+      clipboard.on('error', e => {
+        // 不支持复制
+        let h = _this.$createElement
+        _this.$notify({
+          title: '',
+          message: h('i', {
+            style: 'color: teal'
+          }, '复制失败，请手动复制'),
+          duration: 1500,
+          type: "warning"
+        });
+        // 释放内存  
+        clipboard.destroy()
+        _this.clipboard = new Clipboard(_this.$refs.copyBtn)
+      })
+    }
   }
 }
 </script>
@@ -207,5 +238,26 @@ export default {
 
 .rightNav {
   right: 10px;
+}
+
+#copy_url{
+  display: inline-block;
+  background-color: #fff;
+  border:none;
+  border: 1px solid @mainColor;
+  margin-bottom: 5px;
+  padding: 5px;
+  padding-bottom: 3px;
+  text-align: center;
+}
+.copyBtn{
+  display: inline-block;
+  background-color: @mainColor;
+  border: none;
+  padding: 5px;
+}
+
+.searchInput{
+  box-shadow: 0 0 5px 5px @mainColor;
 }
 </style>
