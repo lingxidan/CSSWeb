@@ -100,6 +100,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../../../static/css/main.less';
 .main {
   position: relative;
   width: 100%;
@@ -166,7 +167,7 @@ export default {
     margin-top: 5px;
     font-size: 14px;
     font-family: "黑体";
-    transition: box-shadow 1s ease-in,
+    transition: background-color 1s ease-in,
       height 1s ease-in,
       line-height 1s ease-in;
   }
@@ -179,7 +180,10 @@ export default {
     height: 30px;
     font-size: 15px;
     line-height: 30px;
-    box-shadow: 0 0 5px 5px #fce9c7;
+    // color: black;
+    // border: 1px solid @secondColor;
+    // box-shadow: 0 0 5px 5px #fce9c7;
+    background-color: @mainColor;
   }
 }
 </style>

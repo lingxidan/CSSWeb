@@ -1,1 +1,39 @@
 @mainColor:#fce9c7;
+@secondColor:#FBA400;
+@hoverColor:#fab83e;
+// 首页搜索框
+.search:hover{
+  .el-input__inner{
+    border-color: @hoverColor;
+  }
+  .el-icon-arrow-up:before{
+    color:@secondColor;
+  }
+}
+.search{
+  .el-input__inner, .el-checkbox__inner, .el-textarea__inner, .el-button {
+    border-radius: 0px;
+    border-color: @mainColor;
+    // display: inline;
+  }
+  .el-input__inner{
+    border-right: 0px;
+  }
+  .el-icon-arrow-up:before{
+    color:@mainColor;
+  }
+  .el-button{
+    background-color: @secondColor;
+    width: 10%;
+    color:white;
+    padding-bottom: 13px;
+  }
+  .el-button:hover,.el-button:focus{
+    background-color: @hoverColor;
+  }
+  .searchInput{
+    .el-input__inner{
+      border-left: 0px;
+    }
+  }
+}

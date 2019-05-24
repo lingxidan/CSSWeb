@@ -3,21 +3,29 @@
   <div class="top" ref="top">
     <topNav></topNav>
     <div class="show">
-      <!-- <div class="panels"> -->
       <carousel></carousel>
-      <!-- </div> -->
     </div>
   </div>
   <div class="main">
     <div class="search" ref="search">
-      <el-input v-model="input3"  placeholder="请输入内容" 
+      <el-select name="" id="" 
+      v-model="searchMsg.select.value"
+      class="searchSel">
+        <el-option v-for="sel in searchSel" 
+        :key="sel.id" :value="sel.value"
+        :label="sel.label"></el-option>
+      </el-select><el-input v-model="searchMsg.searchText"  placeholder="请输入内容" 
       class="input-with-select searchInput">
-        <el-button slot="append" icon="el-icon-search"></el-button>
-      </el-input>
+      </el-input><el-button icon="el-icon-search">搜索</el-button>
     </div>
-    <div class="info">
-      <div class="teachers"></div>
-      <div class="volunteers"></div>
+    <div class="info" ref="info">
+      <div class="teachers">
+        <teacher :teacher="teacher"></teacher>
+        <teacher :teacher="teacher"></teacher>
+      </div>
+      <div class="volunteers">
+        <volunteer></volunteer>
+      </div>
     </div>
     <div class="articles"></div>
     <div class="postCard"></div>
@@ -35,8 +43,7 @@
         data-clipboard-target="#copy_url" @click="copy">
           复制网址
         </button>
-        <!-- <label id="copy_url" :data-clipboard-text="test">{{test}}</label> -->
-        <li slot="reference">传播分享</li>
+        <li slot="reference" style="border-top:none;">传播分享</li>
       </el-popover>
     </ul>
   </div>
@@ -57,11 +64,16 @@
 <script>
 import topNav from '@/components/common/topNav.vue'
 import carousel from '@/components/common/carousel.vue'
-import Clipboard from 'clipboard';
+import teacher from '@/components/common/teacher.vue'
+import volunteer from '@/components/common/volunteer.vue'
+import Clipboard from 'clipboard'
+
 export default {
   components: {
     topNav,
-    carousel
+    carousel,
+    teacher,
+    volunteer
   },
   data() {
     return {
@@ -69,14 +81,41 @@ export default {
       panels: {},
       moveArrow: true,
       input3: "",
-      select: "",
       searchSel:[
         {
           id:0,
+          field:"total",
+          label:"全部",
+          value:"全部"
+        },
+        {
+          id:1,
+          field:"school",
           label:"学校",
           value:"学校"
+        },
+        {
+          id:2,
+          field:"teacher",
+          label:"教职",
+          value:"教职"
         }
-      ]
+      ],
+      teacher:{
+        name:"数学教师",
+        during:"4-10年",
+        education:"本科",
+        teacherCert:true,
+        schoolName:"XXX小学",
+        schoolAddr:"北京市 北京市 朝阳区",
+        contactImg:"/src/assets/logo_vue.png",
+        contactPerson:"刘女士",
+        contactJob:"教育局代表人",
+      },
+      searchMsg:{
+        select: "",
+        searchText:""
+      }
     }
   },
   mounted() {
@@ -84,7 +123,10 @@ export default {
     this.panels.search = this.$refs.search
     this.panels.rightNav = this.$refs.rightNav
     this.panels.leftNav = this.$refs.leftNav
+
+    this.panels.info = this.$refs.info
     this.handleScroll()
+    this.searchMsg.select = this.searchSel[0]
     // 复制按钮
     this.clipboard = new Clipboard(this.$refs.copyBtn)
     window.addEventListener('scroll', this.handleScroll, true); // 监听（绑定）滚轮滚动事件
@@ -96,6 +138,7 @@ export default {
       let _search = this.panels.search
       let _rightNav = this.panels.rightNav
       let _leftNav = this.panels.leftNav
+      let _info = this.panels.info
 
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       let topHeight = _top.clientHeight
@@ -103,14 +146,26 @@ export default {
       let searchWidth = _search.clientWidth
       if (scrollTop > topHeight) {
         _search.style.position = "fixed"
-        _search.style.top = "10px"
-        _search.style.width = searchWidth + "px"
+        _search.style.top = "0px"
+        _search.style.left = "0px"
+        _search.style.right = "0px"
+        _search.style.backgroundColor = "#fce9c7"
+        _search.style.zIndex = "5"
+        console.log(_search.style)
         _rightNav.style.opacity = "1"
         _leftNav.style.opacity = "1"
+        _rightNav.style.display = ""
+        _leftNav.style.display = ""
+        _info.style.marginTop = searchHeight + "px"
       } else {
         _search.style.position = "relative"
+        _search.style.top = "0px"
+        _search.style.backgroundColor = "inherit"
+        _rightNav.style.display = "none"
+        _leftNav.style.display = "none"
         _rightNav.style.opacity = "0"
         _leftNav.style.opacity = "0"
+        _info.style.marginTop = "0px"
       }
     },
     // 回到顶部的鼠标移入移出
@@ -174,8 +229,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../../static/css/main';
-
+@import '../../static/css/main';
 .index {
   display: flex;
   flex-direction: column;
@@ -185,17 +239,48 @@ export default {
   .top {
     background-color: @mainColor;
     width: 100%;
+    topNav{
+      padding: 5px;
+    }
 
     .show {
       padding: 20px;
     }
   }
 }
-
 .index>.main {
-  margin: 10px;
-  width: 80%;
+  position: relative;
+  padding: 3px;
+  width: 85%;
   height: 1000px;
+  .search{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .searchSel{
+      width: 10%;
+    }
+    .searchInput{
+      width: 60%;
+    }
+  }
+  .info{
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    .circle{
+      width: 50px;
+      height: 50px;
+      border:1px solid @mainColor;
+      background-color: @mainColor;
+      border-radius: 50%;
+    }
+    .teachers{
+      width: 50%;
+    }
+    .volunteers{
+      width: 50%;
+    }
+  }
 }
 
 .leftNav,
@@ -211,7 +296,7 @@ export default {
     line-height: 30px;
     background-color: #fff;
     font-size: 14px;
-    border: 1px solid @mainColor;
+    border: 1px solid @secondColor;
     border-top: 0;
     padding: 5px;
     text-align: center;
@@ -219,20 +304,24 @@ export default {
   }
 
   li:first-child {
-    border-top: 1px solid @mainColor;
+    border-top: 1px solid @secondColor;
   }
 }
 
 .leftNav {
   left: 0;
-
   li.top {
+    background-color:@secondColor;
     p.arrow {
       display: block;
       color: white;
       transform: rotate(90deg) scaleX(3) scaleY(8);
       margin-left: -10px;
     }
+  }
+  li.top:hover{
+    background-color:@hoverColor;
+    color:white;
   }
 }
 
@@ -242,7 +331,7 @@ export default {
 
 #copy_url{
   display: inline-block;
-  background-color: #fff;
+  background-color: rgb(252, 252, 252);
   border:none;
   border: 1px solid @mainColor;
   margin-bottom: 5px;
@@ -256,8 +345,9 @@ export default {
   border: none;
   padding: 5px;
 }
-
-.searchInput{
-  box-shadow: 0 0 5px 5px @mainColor;
+.copyBtn:hover{
+  background-color: @hoverColor;
+  color:white;
 }
+
 </style>
