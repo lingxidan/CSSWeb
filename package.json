@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "clipboard": "^2.0.4",
+    "element-ui": "^2.8.2",
     "hoek": "^6.1.3",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "sass-resources-loader": "^2.0.0",
     "vue": "^2.5.11",
     "vue-router": "^3.0.2",

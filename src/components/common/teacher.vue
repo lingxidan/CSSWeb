@@ -15,15 +15,14 @@
       </div>
     </div>
     <div class="contactInfo">
-      <span>
-        <img :src="teacher.contactImg" alt="" />
-        </span>
-      <span>{{teacher.contactPerson}}</span>
-      <span>{{teacher.contactJob}}</span>
-      <!-- <div class="name">{{teacher.contactPerson}}</div>
-      <div class="require">
+      <div class="change">
+        <span>
+          <img :src="teacher.contactImg" alt="" />
+          </span>
+        <span>{{teacher.contactPerson}}</span>
         <span>{{teacher.contactJob}}</span>
-      </div> -->
+      </div>
+      <el-button class="btnChange">立即沟通</el-button>
     </div>
   </div>
 </template>
@@ -74,6 +73,8 @@ export default {
   border: 1px solid rgb(243, 243, 243);
   border-top:none;
   background-color: #fff;
+  padding-top: 3px;
+  padding-bottom: 3px;
   .name{
     text-align: left;
     font-size: 18px;
@@ -91,7 +92,9 @@ export default {
     font-size: 12px;
     span{
       display: inline-block;
-      width: 30%;
+      padding-right: 10px;
+      padding-left: 10px;
+      // width: 30%;
       border-right: 1px solid @mainColor;
       text-align: center;
     }
@@ -119,6 +122,8 @@ export default {
     width: 30%;
     padding: 10px;
     overflow: hidden;
+    display:flex;
+    align-items: center;
     span{
       display: inline-block;
       text-align: center;
@@ -139,12 +144,28 @@ export default {
       vertical-align: middle;
     }
   }
+  .btnChange{
+    display: none;
+    width: 80%;
+    background-color: @secondColor;
+    border:none;
+    color:white;
+  }
+  .btnChange:hover{
+    background-color: @hoverColor;
+  }
 }
 .teacher:hover{
   transform: translateZ(1px);
   box-shadow: 0 0 10px 0 @hoverColor;
   .mainInfo .name{
     color:@hoverColor;
+  }
+  .contactInfo .change{
+    display: none;
+  }
+  .contactInfo .btnChange{
+    display: block;
   }
 }
 </style>

@@ -1,29 +1,34 @@
 <template>
   <div class="volunteer">
     <div class="mainInfo">
-      <div class="name">{{teacher.name}}</div>
+      <div class="name">{{volunteer.name}}</div>
       <div class="require">
-        <span>{{teacher.education}}</span>
-        <span>{{teacher.during}}</span>
-        <span>{{teacher.teacherCert?"要求教资":"不要求教资"}}</span>
+        <span>{{volunteer.education}}</span>
+        <span>{{volunteer.during}}</span>
+        <!-- <span>{{volunteer.teacherCert?"要求教资":"不要求教资"}}</span> -->
       </div>
     </div>
     <div class="schoolInfo">
-      <div class="name">{{teacher.schoolName}}</div>
+      <div class="name">教授科目</div>
       <div class="require">
-        <span>{{teacher.schoolAddr}}</span>
+        <span v-for="(pro, index) in volunteer.projects" :key="index">
+          {{pro}}
+        </span>
       </div>
     </div>
     <div class="contactInfo">
-      <span>
-        <img :src="teacher.contactImg" alt="" />
-        </span>
-      <span>{{teacher.contactPerson}}</span>
-      <span>{{teacher.contactJob}}</span>
-      <!-- <div class="name">{{teacher.contactPerson}}</div>
-      <div class="require">
-        <span>{{teacher.contactJob}}</span>
-      </div> -->
+      <div class="change">
+        <!-- <span>
+          <img :src="volunteer.contactImg" alt="" />
+          </span>
+        <span>{{volunteer.contactPerson}}</span>
+        <span>{{volunteer.contactJob}}</span> -->
+        <!-- <div class="name">{{teacher.contactPerson}}</div>
+        <div class="require">
+          <span>{{teacher.contactJob}}</span>
+        </div> -->
+      </div>
+      <el-button class="btnChange">立即沟通</el-button>
     </div>
   </div>
 </template>
@@ -33,7 +38,7 @@ export default {
   name: '',
   data() { 
     return {
-
+      contact:false
     }
   },
   props: {
@@ -41,12 +46,11 @@ export default {
       type:Object,
       default:function () {
         return {
-          name:"XXX",
-          during:"4-10年",
+          name:"X老师",
+          during:"4-10年经验",
           education:"本科",
-          teacherCert:true,
-          schoolName:"XXX小学",
-          schoolAddr:"北京市 北京市 朝阳区",
+          projects:["数学","英语","语文"],
+          // schoolAddr:"北京市 北京市 朝阳区",
           contactImg:"/src/assets/logo_vue.png",
           contactPerson:"刘女士",
           contactJob:"教育局代表人",
@@ -67,12 +71,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import '../../../static/css/main';
 .volunteer{
   display: flex;
   width: 100%;
   border: 1px solid rgb(243, 243, 243);
   border-top:none;
   background-color: #fff;
+  padding-top: 3px;
+  padding-bottom: 3px;
   .name{
     text-align: left;
     font-size: 18px;
@@ -90,7 +97,9 @@ export default {
     font-size: 12px;
     span{
       display: inline-block;
-      width: 30%;
+      // width: 30%;
+      padding-right: 10px;
+      padding-left: 10px;
       border-right: 1px solid @mainColor;
       text-align: center;
     }
@@ -118,6 +127,8 @@ export default {
     width: 30%;
     padding: 10px;
     overflow: hidden;
+    display:flex;
+    align-items: center;
     span{
       display: inline-block;
       text-align: center;
@@ -138,12 +149,28 @@ export default {
       vertical-align: middle;
     }
   }
+  .btnChange{
+    display: none;
+    width: 80%;
+    background-color: @secondColor;
+    border:none;
+    color:white;
+  }
+  .btnChange:hover{
+    background-color: @hoverColor;
+  }
 }
 .volunteer:hover{
   transform: translateZ(1px);
   box-shadow: 0 0 10px 0 @hoverColor;
   .mainInfo .name{
     color:@hoverColor;
+  }
+  .contactInfo .change{
+    display: none;
+  }
+  .contactInfo .btnChange{
+    display: block;
   }
 }
 </style>

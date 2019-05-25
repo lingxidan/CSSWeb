@@ -20,11 +20,12 @@
     </div>
     <div class="info" ref="info">
       <div class="teachers">
-        <teacher :teacher="teacher"></teacher>
-        <teacher :teacher="teacher"></teacher>
+        <teacher v-for="(teacher,index) in teachers" :key="index"
+        :teacher="teacher"></teacher>
       </div>
       <div class="volunteers">
-        <volunteer></volunteer>
+        <volunteer v-for="(volunteer,index) in volunteers" :key="index"
+        :volunteer="volunteer"></volunteer>
       </div>
     </div>
     <div class="articles"></div>
@@ -80,7 +81,6 @@ export default {
       url: "https://lingxidan.github.io/",
       panels: {},
       moveArrow: true,
-      input3: "",
       searchSel:[
         {
           id:0,
@@ -101,7 +101,7 @@ export default {
           value:"教职"
         }
       ],
-      teacher:{
+      teachers:[{
         name:"数学教师",
         during:"4-10年",
         education:"本科",
@@ -112,6 +112,80 @@ export default {
         contactPerson:"刘女士",
         contactJob:"教育局代表人",
       },
+      {
+        name:"语文教师",
+        during:"1-5年",
+        education:"本科",
+        teacherCert:true,
+        schoolName:"XXX小学",
+        schoolAddr:"北京市 北京市 朝阳区",
+        contactImg:"/src/assets/logo_vue.png",
+        contactPerson:"张先生",
+        contactJob:"校长",
+      },
+      {
+        name:"语文教师",
+        during:"1-5年",
+        education:"本科",
+        teacherCert:true,
+        schoolName:"XXX小学",
+        schoolAddr:"北京市 北京市 朝阳区",
+        contactImg:"/src/assets/logo_vue.png",
+        contactPerson:"张先生",
+        contactJob:"校长",
+      },
+      {
+        name:"语文教师",
+        during:"1-5年",
+        education:"本科",
+        teacherCert:true,
+        schoolName:"XXX小学",
+        schoolAddr:"北京市 北京市 朝阳区",
+        contactImg:"/src/assets/logo_vue.png",
+        contactPerson:"张先生",
+        contactJob:"校长",
+      },
+      {
+        name:"语文教师",
+        during:"1-5年",
+        education:"本科",
+        teacherCert:true,
+        schoolName:"XXX小学",
+        schoolAddr:"北京市 北京市 朝阳区",
+        contactImg:"/src/assets/logo_vue.png",
+        contactPerson:"张先生",
+        contactJob:"校长",
+      }],
+      volunteers:[{
+          name:"张老师",
+          during:"4-10年经验",
+          education:"本科",
+          projects:["数学","英语","语文"],
+        },
+        {
+          name:"曾老师",
+          during:"3-5年经验",
+          education:"研究生",
+          projects:["数学","语文"],
+        },
+        {
+          name:"曾老师",
+          during:"3-5年经验",
+          education:"研究生",
+          projects:["数学","语文"],
+        },
+        {
+          name:"曾老师",
+          during:"3-5年经验",
+          education:"研究生",
+          projects:["数学","语文"],
+        },
+        {
+          name:"曾老师",
+          during:"3-5年经验",
+          education:"研究生",
+          projects:["数学","语文"],
+        }],
       searchMsg:{
         select: "",
         searchText:""
@@ -151,7 +225,6 @@ export default {
         _search.style.right = "0px"
         _search.style.backgroundColor = "#fce9c7"
         _search.style.zIndex = "5"
-        console.log(_search.style)
         _rightNav.style.opacity = "1"
         _leftNav.style.opacity = "1"
         _rightNav.style.display = ""
@@ -252,7 +325,9 @@ export default {
   position: relative;
   padding: 3px;
   width: 85%;
-  height: 1000px;
+  margin: 20px;
+  margin-top: 0px;
+  // height: 1000px;
   .search{
     padding-top: 10px;
     padding-bottom: 10px;
