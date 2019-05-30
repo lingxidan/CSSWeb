@@ -382,7 +382,7 @@ export default {
   position: relative;
 
   .top {
-    background-color: @mainColor;
+    // background-color: @mainColor;
     width: 100%;
     topNav{
       padding: 5px;

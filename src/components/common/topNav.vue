@@ -27,8 +27,10 @@ export default {
 }
 </script>
 <style lang="less" scoped>
+@import '../../../static/css/main.less';
 .main{
-  background-color: rgba(255, 255, 255, 0.6);
+  // background-color: rgba(255, 255, 255, 0.6);
+  background-color: rgba(252,233,199);
   // background-color: rgba(231, 206, 158, 0.7);
   padding: 8px;
   text-align: center;
