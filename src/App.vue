@@ -79,10 +79,10 @@ export default {
 </script>
 
 <style lang="less">
-@import url("../static/css/common.css");
 @import '../static/css/main.less';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: @mainFont;
+  // font-family: 'liukai';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

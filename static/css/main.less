@@ -1,6 +1,9 @@
 @mainColor:#fce9c7;
 @secondColor:#FBA400;
 @hoverColor:#fab83e;
+@mainFont:'Avenir', Helvetica, Arial, sans-serif;
+@secondFont:'tengxiangkai';
+@thirdFont:'liukai';
 // 首页搜索框
 .search:hover{
   .el-input__inner{
@@ -8,6 +11,7 @@
   }
   .el-icon-arrow-up:before{
     color:@secondColor;
+    // icon-remen
   }
 }
 .search{
@@ -35,5 +39,44 @@
     .el-input__inner{
       border-left: 0px;
     }
+  }
+}
+.postCard{
+  .el-tab-pane{
+    transition: .5s;
+  }
+  .el-tabs__header{
+    margin: 0;
+    // border-bottom: 1px solid @mainColor;
+    border:none;
+  }
+  .el-tabs__content{
+    padding-bottom: 10px;
+  }
+  .el-tabs--card>.el-tabs__header .el-tabs__nav{
+    border: none;
+  }
+  .el-tabs--card>.el-tabs__header .el-tabs__item{
+    border:none;
+    border-top: 3px solid #fff;
+    border-bottom:1px solid @mainColor;
+    width: 50%;
+  }
+  .el-tabs__nav{
+    width: 100%;
+  }
+  .el-tabs__item:hover{
+    color:@hoverColor;
+  }
+  .el-tabs--card>.el-tabs__header .el-tabs__item.is-active{
+    background-color: @mainColor;
+    border-top:3px solid @secondColor;
+  }
+  .el-menu-item{
+    font-family: @thirdFont;
+    font-size: 18px;
+  }
+  .el-menu-item.is-active{
+    background-color: @mainColor;
   }
 }

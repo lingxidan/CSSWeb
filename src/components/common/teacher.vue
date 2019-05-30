@@ -75,13 +75,15 @@ export default {
   background-color: #fff;
   padding-top: 3px;
   padding-bottom: 3px;
+  cursor: pointer;
   .name{
     text-align: left;
-    font-size: 18px;
+    font-size: 20px;
     padding-left: 10px;
     margin-bottom: 5px;
     height: 50%;
     line-height: 26px;
+    font-family: @thirdFont;
   }
   .require{
     color: #aaa;
@@ -157,7 +159,7 @@ export default {
 }
 .teacher:hover{
   transform: translateZ(1px);
-  box-shadow: 0 0 10px 0 @hoverColor;
+  box-shadow: 0 0 10px 0 @mainColor;
   .mainInfo .name{
     color:@hoverColor;
   }
