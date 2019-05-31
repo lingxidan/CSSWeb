@@ -13,8 +13,8 @@
       <a href="#nowhere" title="招募教师">招募教师</a>
     </nav>
     <div class="user">
-      <button>注册</button>
-      <button>登录</button>
+      <button @click="registe">注册</button>
+      <button @click="login">登录</button>
     </div>
   </div>
 </template>
@@ -23,7 +23,14 @@ export default {
   data() {
     return {}
   },
-  methods: {}
+  methods: {
+    login(){
+      this.$emit('login');
+    },
+    registe(){
+      this.$emit('registe');
+    }
+  }
 }
 </script>
 <style lang="less" scoped>

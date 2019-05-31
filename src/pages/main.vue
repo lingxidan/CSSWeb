@@ -1,116 +1,116 @@
 <template>
-<div class="index">
-  <!--导航栏以及轮播图-->
-  <div class="top" ref="top">
-    <topNav></topNav>
-    <div class="show">
-      <carousel></carousel>
-    </div>
-  </div>
-  <!--左右导航-->
-  <div class="rightNav" ref="rightNav">
-    <ul>
-      <li>登录</li>
-      <li>注册</li>
-      <!-- <li>我的信息</li> -->
-      <li>聊天室</li>
-      <el-popover placement="top-start" trigger="hover">
-        <input type="text" id="copy_url" v-model="url" readonly/>
-        <button ref="copyBtn" class="copyBtn"
-        data-clipboard-target="#copy_url" @click="copy">
-          复制网址
-        </button>
-        <li slot="reference" style="border-top:none;">传播分享</li>
-      </el-popover>
-    </ul>
-  </div>
-  <div class="leftNav" ref="leftNav">
-    <ul>
-      <li>招募信息</li>
-      <li>文章</li>
-      <li>交流区</li>
-      <li class="top" @mouseenter.self="handleTopEnter" @mouseleave.self="handleTopLeave" @click="scrollTop">
-        <p class="arrow" v-if="moveArrow">&lt;</p>
-        <p v-else>返回顶部</p>
-      </li>
-    </ul>
-  </div>
-  <!-- 主板块显示 -->
-  <div class="main">
-    <!-- 搜索栏 -->
-    <div class="search" ref="search">
-      <el-select name="" id="" 
-      v-model="searchMsg.select.value"
-      class="searchSel">
-        <el-option v-for="sel in searchSel" 
-        :key="sel.id" :value="sel.value"
-        :label="sel.label"></el-option>
-      </el-select><el-input v-model="searchMsg.searchText"  placeholder="请输入内容" 
-      class="input-with-select searchInput">
-      </el-input><el-button icon="el-icon-search">搜索</el-button>
-    </div>
-    <!-- 招募职位、志愿者信息查看 -->
-    <div class="info" ref="info">
-      <div class="title">招募信息</div>
-      <div class="teachers">
-        <teacher v-for="(teacher,index) in teachers" :key="index"
-        :teacher="teacher"></teacher>
-      </div>
-      <div class="volunteers">
-        <volunteer v-for="(volunteer,index) in volunteers" :key="index"
-        :volunteer="volunteer"></volunteer>
+  <div class="index">
+    <!--导航栏以及轮播图-->
+    <div class="top" ref="top">
+      <topNav @login="login" @registe="registe"></topNav>
+      <div class="show">
+        <carousel></carousel>
       </div>
     </div>
-    <!-- 热门帖子 -->
-    <div class="postCard">
-      <div class="title">讨论交流区</div>
-      <el-tabs tab-position="top" type="card" class="elTabs">
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-self-hot"></i> 热榜</span>
-          <disguss v-for="(index,o) in 4" :key="index" :disguss="disgussHot">
-            <div slot="num"><div class="num">{{index}}</div></div>
-          </disguss>
-        </el-tab-pane>
-        <el-tab-pane>
-          <span slot="label"><i class="el-icon-star-on"></i> 关注</span>
-          <disguss v-for="(index,o) in 5" :key="index" :disguss="disgussStar">
-            <div slot="num"><div class="num"></div></div>
-          </disguss>
-        </el-tab-pane>
-      </el-tabs>
+    <!--左右导航-->
+    <div class="rightNav" ref="rightNav">
+      <ul>
+        <li @click="login">登录</li>
+        <li @click="registe">注册</li>
+        <!-- <li>我的信息</li> -->
+        <li>聊天室</li>
+        <el-popover placement="top-start" trigger="hover">
+          <input type="text" id="copy_url" v-model="url" readonly/>
+          <button ref="copyBtn" class="copyBtn"
+          data-clipboard-target="#copy_url" @click="copy">
+            复制网址
+          </button>
+          <li slot="reference" style="border-top:none;">传播分享</li>
+        </el-popover>
+      </ul>
     </div>
-    <!-- 日志文章 -->
-    <div class="articles">
-      <div class="title">日志文章</div>
-      <el-row :gutter="10">
-        <!-- <el-col :span="6"  class="el-col"> -->
-          <article-info v-for="(index, o) in 8" :key="index"></article-info>
-        <!-- </el-col> -->
-        
-      </el-row>
+    <div class="leftNav" ref="leftNav">
+      <ul>
+        <li>招募信息</li>
+        <li>文章</li>
+        <li>交流区</li>
+        <li class="top" @mouseenter.self="handleTopEnter" @mouseleave.self="handleTopLeave" @click="scrollTop">
+          <p class="arrow" v-if="moveArrow">&lt;</p>
+          <p v-else>返回顶部</p>
+        </li>
+      </ul>
     </div>
-  </div>
-  <div class="footer">
+    <!-- 主板块显示 -->
     <div class="main">
-      <div class="report">
-        <ul>
-          <li>侵权举报</li>
-          <li>有害信息举报</li>
-          <li>违法和不良信息举报</li>
-        </ul>
+      <!-- 搜索栏 -->
+      <div class="search" ref="search">
+        <el-select name="" id="" 
+        v-model="searchMsg.select.value"
+        class="searchSel">
+          <el-option v-for="sel in searchSel" 
+          :key="sel.id" :value="sel.value"
+          :label="sel.label"></el-option>
+        </el-select><el-input v-model="searchMsg.searchText"  placeholder="请输入内容" 
+        class="input-with-select searchInput">
+        </el-input><el-button icon="el-icon-search">搜索</el-button>
       </div>
-      <div class="license">
-        <ul>
-          <li>电信与服务业务经营许可证</li>
-          <li>网络文化经营许可证</li>
-          <li>联系我们</li>
-        </ul>
+      <!-- 招募职位、志愿者信息查看 -->
+      <div class="info" ref="info">
+        <div class="title">招募信息</div>
+        <div class="teachers">
+          <teacher v-for="(teacher,index) in teachers" :key="index"
+          :teacher="teacher"></teacher>
+        </div>
+        <div class="volunteers">
+          <volunteer v-for="(volunteer,index) in volunteers" :key="index"
+          :volunteer="volunteer"></volunteer>
+        </div>
+      </div>
+      <!-- 热门帖子 -->
+      <div class="postCard">
+        <div class="title">讨论交流区</div>
+        <el-tabs tab-position="top" type="card" class="elTabs">
+          <el-tab-pane>
+            <span slot="label"><i class="el-icon-self-hot"></i> 热榜</span>
+            <disguss v-for="(index,o) in 4" :key="index" :disguss="disgussHot">
+              <div slot="num"><div class="num">{{index}}</div></div>
+            </disguss>
+          </el-tab-pane>
+          <el-tab-pane>
+            <span slot="label"><i class="el-icon-star-on"></i> 关注</span>
+            <disguss v-for="(index,o) in 5" :key="index" :disguss="disgussStar">
+              <div slot="num"><div class="num"></div></div>
+            </disguss>
+          </el-tab-pane>
+        </el-tabs>
+      </div>
+      <!-- 日志文章 -->
+      <div class="articles">
+        <div class="title">日志文章</div>
+        <el-row :gutter="10">
+          <!-- <el-col :span="6"  class="el-col"> -->
+            <essay v-for="(index, o) in 8" :key="index"></essay>
+          <!-- </el-col> -->
+          
+        </el-row>
       </div>
     </div>
-    <div class="bottom">师者教师志愿者平台 ©2019 </div>
-  </div>
+    <div class="footer">
+      <div class="main">
+        <div class="report">
+          <ul>
+            <li>侵权举报</li>
+            <li>有害信息举报</li>
+            <li>违法和不良信息举报</li>
+          </ul>
+        </div>
+        <div class="license">
+          <ul>
+            <li>电信与服务业务经营许可证</li>
+            <li>网络文化经营许可证</li>
+            <li>联系我们</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom">师者教师志愿者招募平台 ©2019 </div>
+    </div>
 
-</div>
+  </div>
 </template>
 
 <script>
@@ -118,7 +118,7 @@ import topNav from '@/components/common/topNav.vue'
 import carousel from '@/components/common/carousel.vue'
 import teacher from '@/components/common/teacher.vue'
 import volunteer from '@/components/common/volunteer.vue'
-import articleInfo from '@/components/common/article.vue'
+import essay from '@/components/common/essay.vue'
 import disguss from '@/components/common/disguss.vue'
 import Clipboard from 'clipboard'
 
@@ -128,7 +128,7 @@ export default {
     carousel,
     teacher,
     volunteer,
-    articleInfo,
+    essay,
     disguss
   },
   data() {
@@ -276,6 +276,12 @@ export default {
     window.addEventListener('scroll', this.handleScroll, true); // 监听（绑定）滚轮滚动事件
   },
   methods: {
+    registe(){
+      this.$router.push('/registe')
+    },
+    login(){
+      this.$router.push('/login')
+    },
     // 滚动条事件
     handleScroll() {
       let _top = this.panels.top
@@ -288,6 +294,8 @@ export default {
       let topHeight = _top.clientHeight
       let searchHeight = _search.clientHeight
       let searchWidth = _search.clientWidth
+
+      // console.log(scrollTop,topHeight)
       if (scrollTop > topHeight) {
         _search.style.position = "fixed"
         _search.style.top = "0px"
@@ -380,9 +388,10 @@ export default {
   flex-direction: column;
   align-items: center;
   position: relative;
-
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   .top {
-    // background-color: @mainColor;
     width: 100%;
     topNav{
       padding: 5px;
@@ -396,7 +405,7 @@ export default {
 .index>.main {
   position: relative;
   padding: 3px;
-  width: 85%;
+  width: 80%;
   margin: 20px;
   margin-top: 0px;
   // height: 1000px;
@@ -533,7 +542,7 @@ export default {
   .main{
     width: 100%;
     display:flex;
-    margin: 20px;
+    margin-top: 20px;
     margin-bottom: 5px;
     .report,.license{
       font-size: 30px;
@@ -541,10 +550,10 @@ export default {
       ul li{
         height: 20px;
         text-align: left;
-      }
-      ul li:hover{
-        font-size: 13px;
         cursor: pointer;
+        &:hover{
+        font-size: 13px;
+      }
       }
     }
     .report{
@@ -562,9 +571,11 @@ export default {
       }
     }
   }
-    .bottom{
-      text-align: center;
-      margin-bottom: 5px;
-    }
+  .bottom{
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-family: @thirdFont;
+  }
 }
 </style>
