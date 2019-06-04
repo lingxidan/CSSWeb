@@ -16,10 +16,13 @@
               <i slot="prepend" class="el-input__icon el-icon-lock"></i>
             </el-input>
           </el-form-item>
+          <!-- <el-form-item class="registe"> -->
+          <!-- </el-form-item> -->
           <el-form-item>
-            <el-button style="width:100%" type="primary" @click="login">提交</el-button>
+            <el-button style="width:100%" type="primary" @click="login">登录</el-button>
           </el-form-item>
         </div>
+        <label class="registe" @click="registe">没有账号？加入我们</label></label>
         <div class="hr"></div>
         <div class="login-form-bottom">
           <div class="text">师者教师志愿者招募平台</div>
@@ -58,6 +61,9 @@ export default {
     this.$refs.login.style.height = screenWidth + "px"
   },
   methods:{
+    registe(){
+      this.$router.push('/registe')
+    },
     login(){
       console.log(this.ruleForm)
     }
@@ -78,9 +84,10 @@ export default {
     width: 100%;
     height: 80px;
     top:10%;
-    background-color: rgba(252,233,199,0.8);
+    // background-color: rgba(252,233,199,0.8);
     // background-color: rgba(250,184,62,0.5);
     // background-color: rgba(251,164,0,0.6);
+    background-color: rgba(255,255,255,0.5);
     line-height: 80px;
     font-size: 40px;
     color: white;
@@ -120,7 +127,8 @@ export default {
     height: auto;
     padding-top: 1.5rem;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, .55);
+    // background-color: rgba(255, 255, 255, .55);
+    background-color: rgba(252,233,199,0.7);
     justify-content: space-between;
   }
   .login-form-top {
@@ -145,6 +153,17 @@ export default {
     text-shadow: 0 0 3px white;
     letter-spacing: 2px;
     // color: white;
+  }
+  .registe{
+    height: 10px;
+    line-height: 10px;
+    font-size: 13px;
+    margin-bottom: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+    &:hover{
+      color: #fff;
+    }
   }
 }
 .login:before{

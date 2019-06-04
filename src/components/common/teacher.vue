@@ -70,7 +70,7 @@ export default {
 .teacher{
   display: flex;
   width: 100%;
-  border: 1px solid rgb(243, 243, 243);
+  border: 1px solid @mainColor;
   border-top:none;
   background-color: #fff;
   padding-top: 3px;

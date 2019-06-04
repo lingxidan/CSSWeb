@@ -394,11 +394,11 @@ export default {
   .top {
     width: 100%;
     topNav{
-      padding: 5px;
+      // padding: 5px;
     }
 
     .show {
-      padding: 20px;
+      padding: 10px;
     }
   }
 }
@@ -411,6 +411,7 @@ export default {
   // height: 1000px;
   .search{
     padding-top: 10px;
+    transition: 1s;
     // padding-bottom: 10px;
     .searchSel{
       width: 10%;

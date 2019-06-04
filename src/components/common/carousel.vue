@@ -1,21 +1,15 @@
 <template>
 <div>
   <div class="main">
-    <!-- <div class="leftBtn">&lt;</div> -->
-    <div class="lunbo before" ref="before">
-      <div class="meng"></div>
+    <div class="show">
+      <div class="lunbo" ref="current"></div>
+      <div class="content" ref="content"></div>
     </div>
-    <div class="lunbo current" ref="current">
-    </div>
-    <div class="lunbo after" ref="after">
-      <div class="meng"></div>
-    </div>
-    <ul class="titleList">
-      <li v-for="(info, index) in imgList" :key="index" :class="index == lunboList[1]?'activeli':''">
-        {{info.title}}
-      </li>
+    <ul class="idxList">
+      <li v-for="(info, index) in imgList" 
+      :key="index" 
+      :class="index == lunboList[1]?'activeli':''"></li>
     </ul>
-    <!-- <div class="rightBtn">&gt;</div> -->
   </div>
 </div>
 </template>
@@ -55,32 +49,20 @@ export default {
   },
   // computes
   mounted() {
-    this.panels.before = this.$refs.before
     this.panels.current = this.$refs.current
-    this.panels.after = this.$refs.after
     this.play()
   },
   methods: {
     play() {
-      let _before = this.panels.before
       let _current = this.panels.current
-      let _after = this.panels.after
-      // let _imgTitle = this.$refs.imgTitle
-      _before.style.backgroundImage = 'url(' + this.imgList[this.imgList.length - 1].url + ')'
       _current.style.backgroundImage = 'url(' + this.imgList[0].url + ')'
-      _after.style.backgroundImage = 'url(' + this.imgList[1].url + ')'
-      // _imgTitle.innerHTML = this.imgList[0].title
       this.lunboList = [this.imgList.length - 1, 0, 1]
       this.timer = setInterval(() => {
         this.move()
       }, 3000)
     },
     move() {
-      // this.$refs.before.style.backgroundImage = 'url('+this.imgList[0].url+')'
-      let _before = this.panels.before
       let _current = this.panels.current
-      let _after = this.panels.after
-      // let _imgTitle = this.$refs.imgTitle
       this.lunboList = this.lunboList.map(idx => {
         if (idx == this.imgList.length - 1) {
           idx = 0
@@ -89,11 +71,7 @@ export default {
         }
         return idx
       })
-      console.log()
-      _before.style.backgroundImage = 'url(' + this.imgList[this.lunboList[0]].url + ')'
       _current.style.backgroundImage = 'url(' + this.imgList[this.lunboList[1]].url + ')'
-      _after.style.backgroundImage = 'url(' + this.imgList[this.lunboList[2]].url + ')'
-      // _imgTitle.innerHTML = this.imgList[this.lunboList[1]].title
     },
   }
 }
@@ -105,19 +83,34 @@ export default {
   position: relative;
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  .show{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
-
+.content{
+  display: inline-block;
+  width: 30%;
+  background-color: #fff;
+  height: 200px;
+  margin-right: 10%;
+}
 .lunbo {
   position: relative;
+  background-color: #fff;
   background-position: center;
-  background-size: 100%;
+  background-size: auto 100%;
   background-repeat: no-repeat;
-  width: 400px;
+  width: 60%;
   height: 200px;
   display: inline-block;
-  transition: background-image 1s ease-in;
+  transition: 1s;
+  margin-left: 10%;
 }
 
 .before,
@@ -134,12 +127,10 @@ export default {
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.after {
-  left: -100px;
+.before {
+  left: 50px;
 }
-
-.current {
-  z-index: 100;
+.after {
   left: -50px;
 }
 
@@ -154,36 +145,26 @@ export default {
   opacity: 1;
 }
 
-.titleList {
-  position: absolute;
-  right: 30px;
-  width: 300px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 15px 0 rgb(226, 226, 226);
+.idxList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:5px;
 
   li {
-    height: 25px;
-    line-height: 25px;
-    margin-top: 5px;
-    font-size: 14px;
-    font-family: "黑体";
-    transition: background-color 1s ease-in,
-      height 1s ease-in,
-      line-height 1s ease-in;
-  }
-
-  li:last-child {
-    margin-bottom: 5px;
+    width: 5%;
+    height: 3px;
+    transition: 1s;
+    background-color: rgba(255, 255, 255, 1);
+    border-left: 1px solid @mainColor;
+    &:first-of-type{
+      border-left: none;
+    }
   }
 
   li.activeli {
-    height: 30px;
-    font-size: 15px;
-    line-height: 30px;
-    // color: black;
-    // border: 1px solid @secondColor;
-    // box-shadow: 0 0 5px 5px #fce9c7;
-    background-color: @mainColor;
+    background-color: @secondColor;
   }
 }
 </style>

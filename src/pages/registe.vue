@@ -57,7 +57,7 @@ export default {
   }
   .school{
     background-color: rgba(250,184,62,0.5);
-    background:  -webkit-radial-gradient(rgba(250,184,62,0.5),#fff);
+    background:  radial-gradient(rgba(250,184,62,0.5),#fff);
   }
 }
 </style>
