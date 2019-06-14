@@ -11,10 +11,17 @@
     <div class="rightNav" ref="rightNav">
       <ul>
         <li @click="login">登录</li>
-        <li @click="registe">注册</li>
+        <el-popover placement="left" trigger="hover">
+          <ul class="registe">
+            <li @click="registe('school')">我想招募</li>
+            <li @click="registe('volunteer')">我想支教</li>
+          </ul>
+          <li slot="reference" style="border-top:none;">注册</li>
+          <!-- <li >传播分享</li> -->
+        </el-popover>
         <!-- <li>我的信息</li> -->
         <li>聊天室</li>
-        <el-popover placement="top-start" trigger="hover">
+        <el-popover placement="left" trigger="hover">
           <input type="text" id="copy_url" v-model="url" readonly/>
           <button ref="copyBtn" class="copyBtn"
           data-clipboard-target="#copy_url" @click="copy">
@@ -84,7 +91,7 @@
         <div class="title">日志文章</div>
         <el-row :gutter="10">
           <!-- <el-col :span="6"  class="el-col"> -->
-            <essay v-for="(index, o) in 8" :key="index"></essay>
+            <essay v-for="(index, o) in 9" :key="index"></essay>
           <!-- </el-col> -->
           
         </el-row>
@@ -109,6 +116,9 @@
       </div>
       <div class="bottom">师者教师志愿者招募平台 ©2019 </div>
     </div>
+    <div class="login" ref="login">
+        <login @cancel="cancel"></login>
+    </div>
 
   </div>
 </template>
@@ -120,6 +130,7 @@ import teacher from '@/components/common/teacher.vue'
 import volunteer from '@/components/common/volunteer.vue'
 import essay from '@/components/common/essay.vue'
 import disguss from '@/components/common/disguss.vue'
+import login from './login.vue'
 import Clipboard from 'clipboard'
 
 export default {
@@ -129,7 +140,8 @@ export default {
     teacher,
     volunteer,
     essay,
-    disguss
+    disguss,
+    login
   },
   data() {
     return {
@@ -267,6 +279,8 @@ export default {
     this.panels.search = this.$refs.search
     this.panels.rightNav = this.$refs.rightNav
     this.panels.leftNav = this.$refs.leftNav
+    this.panels.login = this.$refs.login
+    this.panels.login.style.display = "none"
 
     this.panels.info = this.$refs.info
     this.handleScroll()
@@ -276,11 +290,25 @@ export default {
     window.addEventListener('scroll', this.handleScroll, true); // 监听（绑定）滚轮滚动事件
   },
   methods: {
-    registe(){
-      this.$router.push('/registe')
+    // school(){
+    //   this.$router.push('/registe/school')
+    // },
+    // volunteer(){
+    //   this.$router.push('/registe/volunteer')
+    // },
+    registe(opt){
+      console.log(opt)
+      this.$router.push('/registe/'+opt)
     },
     login(){
-      this.$router.push('/login')
+      let _login = this.panels.login
+      _login.style.display ="block"
+      // this.$router.push('/login')
+    },
+    cancel(){
+      let _login = this.panels.login
+      _login.style.display ="none"
+      // this.$router.push('/login')
     },
     // 滚动条事件
     handleScroll() {
@@ -348,14 +376,12 @@ export default {
       let clipboard = _this.clipboard
       clipboard.on('success', e => {
         // alert("复制成功")
-        let h = _this.$createElement
-        _this.$notify({
-          title: '',
-          message: h('i', {
-            style: 'color: teal'
-          }, '复制成功'),
-          duration: 1500,
-          type: "success"
+        
+        this.$message({
+          message: '复制成功！非常感谢您的分享~',
+          type: 'success',
+          customClass:"el-self-message",
+          iconClass:"el-icon-self-success",
         });
         // 释放内存  
         clipboard.destroy()
@@ -363,14 +389,10 @@ export default {
       })
       clipboard.on('error', e => {
         // 不支持复制
-        let h = _this.$createElement
-        _this.$notify({
-          title: '',
-          message: h('i', {
-            style: 'color: teal'
-          }, '复制失败，请手动复制'),
-          duration: 1500,
-          type: "warning"
+        this.$message({
+          message: '复制失败了T_T，请您手动复制',
+          type: 'error',
+          customClass:"el-self-message",
         });
         // 释放内存  
         clipboard.destroy()
@@ -380,9 +402,54 @@ export default {
   }
 }
 </script>
+<style lang="less">
+@import '../../static/css/main';
+.el-message .el-message__content{
+  color:@secondColor;
+  display: inline-block;
+  margin-left:30px;
+}
+.el-self-message{
+  background-color: #fff;
+  border-color: @mainColor;
+}
+</style>
 
 <style lang="less" scoped>
 @import '../../static/css/main';
+.login{
+  position: absolute;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  z-index: 200;
+  background-color: rgba(252,233,199,0.6);
+  // background-color: rgba(250,184,62,0.5);
+  // background-color: rgba(251,164,0,0.6);
+  // background-color: rgba(255,255,255,.5);
+  // opacity: .7;
+}
+ul.registe{
+  li{
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color:@mainColor;
+    cursor: pointer;
+    border-radius: 10px 0 10px 0;
+    margin-top: 5px;
+    font-size: 13px;
+    &:first-of-type{
+      margin: 0px;
+    }
+    &:hover{
+      color:white;
+      background-color: @hoverColor;
+    }
+  }
+}
 .index {
   display: flex;
   flex-direction: column;
@@ -393,6 +460,7 @@ export default {
   overflow: auto;
   .top {
     width: 100%;
+    background-color: @mainColor;
     topNav{
       // padding: 5px;
     }
@@ -411,7 +479,7 @@ export default {
   // height: 1000px;
   .search{
     padding-top: 10px;
-    transition: 1s;
+    transition: .3s;
     // padding-bottom: 10px;
     .searchSel{
       width: 10%;
@@ -503,7 +571,8 @@ export default {
   display: inline-block;
   background-color: @mainColor;
   border: none;
-  padding: 5px;
+  padding: 5px 10px;
+  border-radius: 10px 0px 10px 0px;
 }
 .copyBtn:hover{
   background-color: @hoverColor;
@@ -513,13 +582,14 @@ export default {
   .title{
     position: relative;
     width:100%;
-    margin-top:20px;
-    margin-bottom:15px;
+    margin-top:30px;
+    margin-bottom:20px;
     letter-spacing: 20px;
     font-size: 25px;
     background: url('../../static/img/nav_bc.png') no-repeat center;
     color: rgb(255,255,255,1);
     font-family: @secondFont;
+    // border-radius: 5px;
   }
   .title:before{
     content: "";
@@ -553,7 +623,8 @@ export default {
         text-align: left;
         cursor: pointer;
         &:hover{
-        font-size: 13px;
+        font-size: 12px;
+        font-weight: bold;
       }
       }
     }

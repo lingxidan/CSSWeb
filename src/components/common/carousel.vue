@@ -1,14 +1,18 @@
 <template>
 <div>
-  <div class="main">
+  <div class="main" @mouseleave="play">
     <div class="show">
-      <div class="lunbo" ref="current"></div>
-      <div class="content" ref="content"></div>
+      <!-- {{'background-image:url(\'+imgList[idx].url+'\')'}} -->
+      <div class="lunbo" ref="current" :style="'background-image:url(\''+imgList[idx].url+'\')'"></div>
+      <div class="content" ref="content">
+        <label for="">{{imgList[idx].title}}</label>
+      </div>
     </div>
     <ul class="idxList">
       <li v-for="(info, index) in imgList" 
       :key="index" 
-      :class="index == lunboList[1]?'activeli':''"></li>
+      :class="index == idx?'activeli':''"
+      @click="change(index)"></li>
     </ul>
   </div>
 </div>
@@ -18,60 +22,60 @@
 export default {
   data() {
     return {
-      lunboList: [0, 0, 0],
-      panels: {},
+      idx: 0,
       imgList: [{
           url: "../../../static/img/panel_1.1.jpg",
-          title: "../../../static/img/panel_1.1.jpg",
+          title: "通知一../../../static/img/panel_1.1.jpg",
         },
         {
           url: "../../../static/img/panel_2.1.jpg",
-          title: "../../../static/img/panel_2.1.jpg",
+          title: "通知二../../../static/img/panel_2.1.jpg",
         },
         {
           url: "../../../static/img/panel_3.1.jpg",
-          title: "../../../static/img/panel_3.1.jpg",
+          title: "通知三../../../static/img/panel_3.1.jpg",
         },
         {
           url: "../../../static/img/panel_4.1.jpg",
-          title: "../../../static/img/panel_4.1.jpg",
+          title: "通知四../../../static/img/panel_4.1.jpg",
         },
         {
           url: "../../../static/img/panel_5.1.jpeg",
-          title: "../../../static/img/panel_5.1.jpg",
+          title: "通知五../../../static/img/panel_5.1.jpg",
         },
         {
           url: "../../../static/img/panel_6.1.jpeg",
-          title: "../../../static/img/panel_6.1.jpg",
+          title: "通知六../../../static/img/panel_6.1.jpg../../../static/img/panel_6.1.jpg../../../static/img/panel_6.1.jpg../../../static/img/panel_6.1.jpg../../../static/img/panel_6.1.jpg../../../static/img/panel_6.1.jpg../../../static/img/panel_6.1.jpg",
         },
       ]
     }
   },
   // computes
   mounted() {
-    this.panels.current = this.$refs.current
     this.play()
   },
   methods: {
+    change(index){
+      clearInterval(this.timer)
+      this.idx = index
+    },
     play() {
-      let _current = this.panels.current
-      _current.style.backgroundImage = 'url(' + this.imgList[0].url + ')'
-      this.lunboList = [this.imgList.length - 1, 0, 1]
-      this.timer = setInterval(() => {
-        this.move()
-      }, 3000)
+      if(this.timer){
+        // console.log("clear")
+        clearInterval(this.timer)
+      }
+      // if(!this.timer){
+        this.timer = setInterval(() => {
+          this.move()
+        }, 2500)
+      // }
     },
     move() {
-      let _current = this.panels.current
-      this.lunboList = this.lunboList.map(idx => {
-        if (idx == this.imgList.length - 1) {
-          idx = 0
-        } else {
-          idx++;
-        }
-        return idx
-      })
-      _current.style.backgroundImage = 'url(' + this.imgList[this.lunboList[1]].url + ')'
+      this.idx+=1
+      if(this.idx>=this.imgList.length){
+        this.idx = 0
+      }
+      // console.log(this.idx)
     },
   }
 }
@@ -94,19 +98,40 @@ export default {
   }
 }
 .content{
+  position: relative;
   display: inline-block;
-  width: 30%;
-  background-color: #fff;
+  width: 45%;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 100px 10px 10px 100px;
   height: 200px;
   margin-right: 10%;
+  padding: 20px;
+  // padding-left: -50px;
+  box-sizing: border-box;
+  white-space:normal;
+  word-break:break-all;
+  word-wrap:break-word; 
+  line-height: 30px;
+  z-index: 5;
+  text-align: left;
+  label{
+    margin-left:30px;
+    text-align: left;
+    text-indent: 2em;
+    display: block;
+  }
+  &:first-letter{
+    font-size:30px;
+    font-weight: bolder;
+  }
 }
+
 .lunbo {
   position: relative;
-  background-color: #fff;
   background-position: center;
   background-size: auto 100%;
   background-repeat: no-repeat;
-  width: 60%;
+  width: 50%;
   height: 200px;
   display: inline-block;
   transition: 1s;
@@ -150,9 +175,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top:5px;
+  margin-top:15px;
 
   li {
+    cursor: pointer;
     width: 5%;
     height: 3px;
     transition: 1s;

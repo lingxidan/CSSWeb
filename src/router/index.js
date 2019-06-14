@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import main from '@/pages/main'
-import login from '@/pages/login'
+// import login from '@/pages/login'
 import registe from '@/pages/registe'
 import search from '@/pages/search'
 import chat from '@/pages/chat'
@@ -25,16 +25,22 @@ const router = new Router({
         //   name: 'nav',
         //   component: nav
         // },
+        // {
+        //     // 登录页面
+        //     path: '/login',
+        //     name: 'login',
+        //     component: login
+        // },
         {
-            // 登录页面
-            path: '/login',
-            name: 'login',
-            component: login
+            // 注册招募页面
+            path: '/registe/school',
+            name: 'registeSchool',
+            component: registe
         },
         {
-            // 注册页面
-            path: '/registe',
-            name: 'registe',
+            // 注册志愿者页面
+            path: '/registe/volunteer',
+            name: 'registeVolun',
             component: registe
         },
         {

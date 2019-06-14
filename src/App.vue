@@ -73,7 +73,11 @@ export default {
   name: 'App',
   mounted(){
     let screenWidth = document.documentElement.clientWidth || document.body.clientWidth
-    this.$refs.app.style.width = screenWidth + "px"
+    screenWidth = window.innerWidth
+    screenWidth = document.body.scrollWidth
+    screenWidth = window.screen.width
+    let scrollWidth = window.outerWidth-document.body.scrollWidth
+    this.$refs.app.style.width = screenWidth- scrollWidth + "px"
   }
 }
 </script>
@@ -87,6 +91,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(247, 247, 247);
 }
 </style>

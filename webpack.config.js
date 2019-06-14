@@ -1,16 +1,50 @@
 var path = require('path')
 var webpack = require('webpack')
+var express = require('express')// 通过 node 访问模拟数据
+const app = express();
+// 使用 express 框架启动一个服务器
+// 2. 使用 express 来配置路由，指定接口请求
+var apiRoutes = express.Router()  //定义一个路由
+
+// 暴露 API 接口
+app.use('/api',apiRoutes)
 
 module.exports = {
     entry: './src/main.js',
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: 'dist/',
-        filename: 'build.js'
+				filename: 'build.js'
     },
     devServer: {
-        // 调试端口
-        port: 8989
+        // disableHostCheck: true,
+        // // 允许绑定本地域名
+        // allowedHosts: [
+        //     'http://localhost:8081'
+        // ],
+        // // 调试端口
+        // // port: 8081,
+        // hot: true,
+        // contentBase: false, // since we use CopyWebpackPlugin.
+        // compress: true,
+        // open:true,
+        // host:"localhost",
+        // port:8081,
+        // https:false,
+        // hotOnly:false,
+        assetsSubDirectory: 'static',
+        publicPath: '/',
+        proxy: {
+          '/api': {
+              target: 'http://192.168.31.198:8081', // 接口的域名
+              secure: false,  // 如果是https接口，需要配置这个参数
+              changeOrigin: true, // 如果接口跨域，需要进行这个参数配置,
+            //   ws: true
+            //   pathRewrite: {
+            //     '^/api': '/api'
+            //   }
+          }
+        },
     },
     module: {
         rules: [{
@@ -82,6 +116,15 @@ if (process.env.NODE_ENV === 'production') {
         }),
         new webpack.LoaderOptionsPlugin({
             minimize: true
-        })
+        }),
+        // new htmlWebpackPlugin({
+        //     template:'./index.html',
+        // }),
+        // new copyWebpackPlugin([
+        //     {
+        //         from:"./img",
+        //         to: path.resolve(__dirname,"appdist/img")
+        //     }
+        // ])
     ])
 }

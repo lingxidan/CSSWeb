@@ -4,15 +4,16 @@
       知识就是力量
     </div>
     <div class="form-out-cont">
+      <el-button class="cancel" @click="cancel">X</el-button>
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="32px" class="form-cont">
         <div class="login-form-middle">
           <el-form-item prop="user">
-            <el-input v-model="ruleForm.user" autocomplete="off">
+            <el-input v-model="ruleForm.user" autocomplete="off" placeholder="邮箱/手机号">
               <i slot="prepend" class="el-input__icon el-icon-user"></i>
             </el-input>
           </el-form-item>
           <el-form-item prop="pass">
-            <el-input type="password" v-model="ruleForm.pass" autocomplete="off" @keyup.enter.native="login">
+            <el-input type="password" v-model="ruleForm.pass" autocomplete="off" @keyup.enter.native="login" placeholder="请输入密码">
               <i slot="prepend" class="el-input__icon el-icon-lock"></i>
             </el-input>
           </el-form-item>
@@ -22,7 +23,7 @@
             <el-button style="width:100%" type="primary" @click="login">登录</el-button>
           </el-form-item>
         </div>
-        <label class="registe" @click="registe">没有账号？加入我们</label></label>
+        <!-- <label class="registe" @click="registe">没有账号？加入我们</label></label> -->
         <div class="hr"></div>
         <div class="login-form-bottom">
           <div class="text">师者教师志愿者招募平台</div>
@@ -61,6 +62,9 @@ export default {
     this.$refs.login.style.height = screenWidth + "px"
   },
   methods:{
+    cancel(){
+      this.$emit("cancel")
+    },
     registe(){
       this.$router.push('/registe')
     },
@@ -75,10 +79,27 @@ export default {
 @import '../../static/css/main';
 .login{
   position: relative;
-  background: url('../../static/img/login_bc.jpg') no-repeat;
+  // background: url('../../static/img/login_bc.jpg') no-repeat;
   background-position: center;
   background-size: cover;
   overflow: hidden;
+  .cancel{
+    font-size: 16px;
+    padding: 5px;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    // border-color: #fff;
+    border: none;
+    // background-color: @mainColor;
+    top: 30px;
+    left: 180px;
+    // color: white;
+    &:hover{
+      color: @hoverColor;
+      // background-color:@hoverColor;
+    }
+  }
   .title{
     position: absolute;
     width: 100%;
@@ -87,7 +108,7 @@ export default {
     // background-color: rgba(252,233,199,0.8);
     // background-color: rgba(250,184,62,0.5);
     // background-color: rgba(251,164,0,0.6);
-    background-color: rgba(255,255,255,0.5);
+    // background-color: rgba(255,255,255,1);
     line-height: 80px;
     font-size: 40px;
     color: white;
@@ -101,7 +122,7 @@ export default {
     // height: auto;
     border-radius: 10px;
     margin:0 auto;
-    top:50%;
+    top:46%;
     // margin-top: 50%;
     transform: translateY(-50%);
   }
@@ -127,8 +148,9 @@ export default {
     height: auto;
     padding-top: 1.5rem;
     border-radius: 5px;
-    // background-color: rgba(255, 255, 255, .55);
-    background-color: rgba(252,233,199,0.7);
+    background-color: rgba(255, 255, 255, 1);
+    // background-color: rgba(250,184,62,1);
+    // background-color: rgba(252,233,199,0.7);
     justify-content: space-between;
   }
   .login-form-top {
@@ -162,7 +184,7 @@ export default {
     text-decoration: underline;
     cursor: pointer;
     &:hover{
-      color: #fff;
+      color: @hoverColor;
     }
   }
 }
@@ -172,19 +194,24 @@ export default {
 }
 </style>
 <style lang="less">
+@import '../../static/css/main';
+.login{
 .el-input__inner{
   height: 42px;
-  border: none;
+  // border: none;
+  border-color: @mainColor;
 }
 .el-input-group__prepend{
-  background-color: #fff;
+  background-color: @mainColor;
+  // border-color: @mainColor;
   border: none;
+  color:white;
 }
 .el-form-item.is-error .el-input__inner{
-  border: none;
+  border-color: @mainColor;
 }
 .el-form-item.is-success .el-input__inner{
-  border: none;
+  border-color: @mainColor;
 }
 .el-input__icon{
   font-size: 20px;
@@ -194,5 +221,22 @@ export default {
   top: 45%;
   left: 67%;
   transform: translate(0,-50%);
+}
+}
+</style>
+<style lang="less">
+@import '../../static/css/main';
+.el-message .el-message__content{
+  color:@secondColor;
+  display: inline-block;
+  margin-left:30px;
+}
+.el-self-message{
+  background-color: #fff;
+  border-color: @mainColor;
+}
+
+.el-input__inner:hover,.el-input__inner:focus{
+  border-color: @secondColor;
 }
 </style>

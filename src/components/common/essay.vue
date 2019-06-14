@@ -1,6 +1,6 @@
 <template>
   <!-- <div class="main"> -->
-    <el-col :span="6" class="elCol">
+    <el-col :span="8" class="elCol">
       <el-card :body-style="{ padding: '0px' }" class="card">
         <img :src="essay.img" class="image">
         <div class="bottom_text">
@@ -67,19 +67,27 @@ export default {
   left: 0;
   width: 100%;
   color: #ffffff;
-  transition: .5s;
+  transition: .3s;
 }
 .card{
   position: relative;
   margin-top:5px;
 }
 .card:hover{
-  transform: translateZ(1px) scale(1.01,1.01);
+  // transform: translateZ(1px) scale(1.01,1.01);
   .mask{
     // border-top:5px solid @secondColor;
     top:0;
     height: 100%;
     background: rgba(255, 255, 255, 0.5);
+  }
+}
+</style>
+<style lang="less">
+.elCol{
+  .el-card.is-always-shadow{
+    box-shadow: none;
+    border: none;
   }
 }
 </style>
