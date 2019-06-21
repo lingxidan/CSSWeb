@@ -1,51 +1,32 @@
 <template>
   <div class="registe" ref="registe">
     <div class="img"></div>
-    <div v-if="user=='volunteer'" class="teacher">
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-position="right" label-width="130px" class="form-cont">
+    <div class="teacher">
+      <h1 class="registe_top">欢迎加入志愿教师大家庭</h1>
+      <el-form :model="registeForm" status-icon :rules="rules" ref="registeForm" label-position="right" label-width="130px" class="form-cont">
         <el-form-item prop="user" label="邮箱">
-          <el-input v-model="ruleForm.user" autocomplete="off" placeholder="邮箱">
+          <el-input v-model="registeForm.user" autocomplete="off" placeholder="邮箱">
           </el-input>
         </el-form-item>
         <el-form-item prop="pass" label="密码">
-          <el-input type="password" v-model="ruleForm.pass" autocomplete="off" placeholder="请输入密码">
+          <el-input type="password" v-model="registeForm.pass" autocomplete="off" placeholder="请输入密码">
           </el-input>
         </el-form-item>
         <el-form-item prop="checkPass" label="确认密码">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off" placeholder="再次输入密码">
+          <el-input type="password" v-model="registeForm.checkPass" autocomplete="off" placeholder="再次输入密码">
           </el-input>
         </el-form-item>
-        <el-form-item prop="checkUser" label="邮箱验证码">
-          <el-input v-model="ruleForm.checkUser" autocomplete="off" placeholder="验证码">
+        <el-form-item prop="checkUser" label="邮箱验证码" class="input-with-select">
+          <el-input v-model="registeForm.checkUser" autocomplete="off" placeholder="验证码">
+            <el-button type="info" plain slot="append" ref="code" @click="sendCode">发送验证码</el-button>
           </el-input>
         </el-form-item>
         <!-- <el-form-item>
           <el-button style="width:100%" type="primary" >登录</el-button>
         </el-form-item> -->
       </el-form>
-        <el-button style="width:100%" type="primary" >成为志愿教师</el-button>
+        <el-button class="login_bottom" style="width:70%" type="primary" >成为志愿教师</el-button>
         <label class="login">已有账号？现在就登录</label>
-    </div>
-    <div v-if="user=='school'" class="school">
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="32px" class="form-cont">
-        <div class="login-form-middle">
-          <el-form-item prop="user">
-            <el-input v-model="ruleForm.user" autocomplete="off" placeholder="邮箱/手机号">
-              <i slot="prepend" class="el-input__icon el-icon-user"></i>
-            </el-input>
-          </el-form-item>
-          <el-form-item prop="pass">
-            <el-input type="password" v-model="ruleForm.pass" autocomplete="off" @keyup.enter.native="login" placeholder="请输入密码">
-              <i slot="prepend" class="el-input__icon el-icon-lock"></i>
-            </el-input>
-          </el-form-item>
-          <!-- <el-form-item class="registe"> -->
-          <!-- </el-form-item> -->
-          <el-form-item>
-            <el-button style="width:100%" type="primary" @click="login">登录</el-button>
-          </el-form-item>
-        </div>
-      </el-form>
     </div>
   </div>
 </template>
@@ -54,38 +35,40 @@
 import request from '../request/api.js'
 export default {
   name: 'registe',
+  userTime: {},
   data() { 
     var validateUser = (rule, value, callback) => {
-          // sendToMail("lingxi_danx@sina.com", 123123)
-          // sendToMail("1106469850@qq.com", 123123)
-      let formData = {
-        name: "asd",
-        email: "1106469850@qq.com",
-      };
-      request.email(formData).then(res=>{console.log("success")})
-      .catch(error=>{console.log(error)})
-      // if (value === '') {
-      //   callback(new Error('请输入邮箱'));
-      // }else{
-      //   var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
-      //   if(reg.test(value)){
-      //     callback();
-      //   }else{
-      //     callback(new Error('邮箱格式不正确'));
-      //   }
-      // }
-    };
-    var validateUser2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入邮箱'));
+      }else{
+        var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+        if(reg.test(value)){
+          callback();
+        }else{
+          callback(new Error('邮箱格式不正确'));
+        }
       }
+    };
+    var validateUser2 = (rule, value, callback) => {
+      if(this.registeForm.user === ''){
+        callback(new Error('请输入邮箱'));
+      }
+      if (value === '') {
+        callback(new Error('请输入邮箱验证码'));
+      }
+      // let formData = {
+      //   name: "asd",
+      //   email: "1106469850@qq.com",
+      // };
+      // request.email(formData).then(res=>{console.log("success")})
+      // .catch(error=>{console.log(error)})
     };
     var validatePass = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
       } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass');
+        if (this.registeForm.checkPass !== '') {
+          this.$refs.registeForm.validateField('checkPass');
         }
         callback();
       }
@@ -93,19 +76,21 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'));
-      } else if (value !== this.ruleForm.pass) {
+      } else if (value !== this.registeForm.pass) {
         callback(new Error('两次输入密码不一致!'));
       } else {
         callback();
       }
     };
     return {
-      user: this.$route.path.split('/')[2],
-      ruleForm: {
+      panels:{},
+      codeTime:{},
+      registeForm: {
         user: '',
         pass: '',
         checkPass: '',
-        checkUser: ''
+        checkUser: '',
+        identy:this.$route.path.split('/')[2]
       },
       rules: {
         user: [
@@ -132,12 +117,22 @@ export default {
     
   },
   mounted() {
-    console.log(this.user)
+    // console.log(this.user)
     let screenWidth = document.documentElement.clientHeight || document.body.clientHeight
     this.$refs.registe.style.height = screenWidth + "px"
+    this.panels.codeBtn = this.$refs.code
+    console.log()
   },
   methods:{
-
+    sendCode(){
+      this.codeTime.startTime = new Date()
+      // setTimeout(()=>{
+      //   let endTime = new Date()
+      //   alert(endTime-this.codeTime.startTime)
+      // },1000)
+      this.panels.codeBtn.innerText="已发送，请在60s内输入"
+      // alert(this.codeTime.startTime)
+    }
   },
  }
 </script>
@@ -154,15 +149,20 @@ export default {
   .el-icon-arrow-up:before{
     color:@mainColor;
   }
-  .el-button{
+  .el-button,.el-input-group__append{
     background-color: @secondColor;
-    width: 10%;
+    // width: 10%;
     color:white;
     padding-bottom: 13px;
     border-radius: 3px;
+    border:none;
   }
-  .el-button:hover,.el-button:focus{
+  .el-input-group__append{
+    padding-bottom: 0;
+  }
+  .el-button:hover,.el-button:focus,.el-input-group__append:hover,.el-input-group__append:focus{
     background-color: @hoverColor;
+    border: none;
   }
   .el-input__inner:hover,.el-input__inner:focus{
     border-color: @secondColor;
@@ -202,8 +202,8 @@ export default {
     z-index: -1;
   }
   .img{
-    width: 33%;
-    height: 55%;
+    width: 37%;
+    height: 59%;
     background: url('../../static/img/registe_bc.jpg') no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -211,20 +211,34 @@ export default {
     border-radius: 0 50% 0 50%;
     box-shadow: 0 0 10px 10px @mainColor;
     z-index: -3;
+    margin-left: 60px;
+  }
+  .registe_top{
+    width: 100%;
+    height: 33px;
+    line-height: 33px;
+    font-family: @secondFont;
+    font-size: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color:rgba(250,184,62,0.5);
   }
   .teacher,.school{
-    margin-left: -20px;
+    margin-left: -10px;
     background-color: rgba(255, 255, 255, 1);
-    width: 45%;
-    height: 85%;
+    width: 42%;
+    height: 79%;
     padding-top: 40px;
     // padding-left: 50px;
     // color:white;
     // line-height: 300px;
     // font-size: 30px;
     // letter-spacing: 3px;
+
+    // box-shadow: -9px 9px 3px 0px @mainColor;
+    border-radius: 10px;
     .form-cont{
-      padding: 30px;
+      padding: 40px 50px 40px 20px;
       // padding-right: 100px;
     }
     .login{
@@ -240,6 +254,9 @@ export default {
         color: @hoverColor;
       }
     }
+    // .login_bottom{
+    //   margin-top: 50px;
+    // }
   }
   // .school{
   //   background-color: rgba(250,184,62,0.5);
