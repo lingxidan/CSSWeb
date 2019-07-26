@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
+import app from '@/App.vue'
 import main from '@/pages/main'
 // import login from '@/pages/login'
 import registe from '@/pages/registe'
 import search from '@/pages/search'
 import chat from '@/pages/chat'
+// 个人信息页
+import user from '@/pages/user/user'
+import selfVol from '@/pages/user/self-volunteer'
+import selfSch from '@/pages/user/self-school'
 
 import lunbo from '@/components/common/carousel'
 // import topNav from '@/components/common/nav'
@@ -31,6 +36,29 @@ const router = new Router({
         //     name: 'login',
         //     component: login
         // },
+        {
+			path: '/user',
+			name: 'user',
+			component: user,
+			children:[
+				{
+					path: 'volunteer',
+					name: 'selfVol',
+					component: selfVol
+                },
+                {
+					path: 'school',
+					name: 'selfSch',
+					component: selfSch
+                }
+            ]
+        },
+        {
+            // 注册招募页面
+            path: '/registe/school',
+            name: 'registeSchool',
+            component: registe
+        },
         {
             // 注册招募页面
             path: '/registe/school',

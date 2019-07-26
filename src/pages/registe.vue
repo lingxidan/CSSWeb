@@ -2,7 +2,8 @@
   <div class="registe" ref="registe">
     <div class="img"></div>
     <div class="teacher">
-      <h1 class="registe_top">欢迎加入志愿教师大家庭</h1>
+      <h1 v-if="registeForm.identy=='volunteer'" class="registe_top">欢迎加入志愿教师大家庭</h1>
+      <h1 v-else class="registe_top">一站招募式平台</h1>
       <el-form :model="registeForm" status-icon :rules="rules" ref="registeForm" label-position="right" label-width="130px" class="form-cont">
         <el-form-item prop="user" label="邮箱">
           <el-input v-model="registeForm.user" autocomplete="off" placeholder="邮箱">
@@ -25,7 +26,16 @@
           <el-button style="width:100%" type="primary" >登录</el-button>
         </el-form-item> -->
       </el-form>
-        <el-button class="login_bottom" style="width:70%" type="primary" >成为志愿教师</el-button>
+        <el-button v-if="registeForm.identy=='volunteer'" 
+          class="login_bottom" 
+          @click="registe"
+          style="width:70%" 
+          type="primary" >开启志愿之旅</el-button>
+        <el-button v-else
+          class="login_bottom" 
+          @click="registe"
+          style="width:70%" 
+          type="primary" >开启招募大门</el-button>
         <label class="login">已有账号？现在就登录</label>
     </div>
   </div>
@@ -132,6 +142,10 @@ export default {
       // },1000)
       this.panels.codeBtn.innerText="已发送，请在60s内输入"
       // alert(this.codeTime.startTime)
+    },
+    registe(){
+      let identy = this.registeForm.identy
+      this.$router.push('/user/'+identy)
     }
   },
  }
@@ -228,6 +242,8 @@ export default {
     background-color: rgba(255, 255, 255, 1);
     width: 42%;
     height: 79%;
+    // display: flex;
+    // flex-direction: column;
     padding-top: 40px;
     // padding-left: 50px;
     // color:white;
@@ -238,7 +254,8 @@ export default {
     // box-shadow: -9px 9px 3px 0px @mainColor;
     border-radius: 10px;
     .form-cont{
-      padding: 40px 50px 40px 20px;
+      padding: 40px 50px 30px 20px;
+      // height: 70%;
       // padding-right: 100px;
     }
     .login{

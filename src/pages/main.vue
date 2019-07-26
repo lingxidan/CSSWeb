@@ -458,13 +458,9 @@ ul.registe{
   width: 100%;
   height: 100%;
   overflow: auto;
-  .top {
+  div.top {
     width: 100%;
-    background-color: @mainColor;
-    topNav{
-      // padding: 5px;
-    }
-
+    background:  linear-gradient(@mainColor 40%, transparent);
     .show {
       padding: 10px;
     }

@@ -2,7 +2,7 @@
   <div class="main">
   	<img class="logo" src="../../../static/img/logo.png" />
     <nav class="mainNav">
-      <a href="#nowhere" title="首页">首页</a>
+      <a href="/" title="首页">首页</a>
       <a href="#nowhere" title="教职岗位">教职岗位</a>
       <a href="#nowhere" title="支教志愿者">支教志愿者</a>
       <a href="#nowhere" title="支教学校">支教学校</a>

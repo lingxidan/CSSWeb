@@ -74,19 +74,21 @@ export default {
     transition: .2s;
   }
   .title{
-    width: 65%;
+    width: 70%;
+    margin-right: 30px;
     display: flex;
     flex-direction: column;
     .name{
       text-align: left;
       height: 30px;
-      font-size: 18px;
+      font-size:22px;
       font-weight: bold;
+      margin-bottom: 15px;
     }
     .content{
       width: 100%;
-      height: 50px;
-      font-size: 16px;
+      height: 100px;
+      font-size: 18px;
       text-align: left;
       overflow: hidden;
       text-overflow:ellipsis;
@@ -107,9 +109,10 @@ export default {
     }
   }
   .image img{
-    width: 200px;
-    height: 100px;
-    border-radius: 10px;
+    width: 300px;
+    // height: 100px;
+    height: 100%;
+    border-radius: 5px;
   }
 
 }

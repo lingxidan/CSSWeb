@@ -91,6 +91,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: rgb(247, 247, 247);
+  // background-color: rgb(249, 249, 249);
 }
 </style>

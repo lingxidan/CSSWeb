@@ -183,6 +183,7 @@ export default {
     height: 3px;
     transition: 1s;
     background-color: rgba(255, 255, 255, 1);
+    border-bottom: 1px solid @mainColor;
     border-left: 1px solid @mainColor;
     &:first-of-type{
       border-left: none;

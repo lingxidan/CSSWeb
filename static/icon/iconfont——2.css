@@ -7,73 +7,59 @@
   url('iconfont.svg?t=1563259067617#iconfont') format('svg'); /* iOS 4.1- */
 }
 
-[class^=el-icon-self]{
-  /* .iconfont { */
-    font-family: "iconfont" !important;
-    /* font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; */
-    font-style:normal;
-    font-weight:400;
-    font-variant:normal;
-    text-transform:none;
-    line-height:1;
-    vertical-align:baseline;
-    display:inline-block;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    /* color:#fab83e; */
-  }
-  
-  .iconfont {
-    font-family: "iconfont" !important;
-    font-size: 16px;
-    font-style: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .el-icon-self-taolunhui:before {
-    content: "\e667";
-  }
-  
-  .el-icon-self-yuedu:before {
-    content: "\e639";
-  }
-  
-  .el-icon-self-hot:before {
-    content: "\e647";
-  }
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  .el-icon-self-success:before {
-    content: "\e7f8";
-  }
+.icon-iconfontdianhua1:before {
+  content: "\e60f";
+}
 
-  .el-icon-self-dianhua:before {
-    content: "\e60f";
-  }
+.icon-taolunhui:before {
+  content: "\e667";
+}
 
-  .el-icon-self-dingwei:before {
-    content: "\e61f";
-  }
+.icon-yuedu:before {
+  content: "\e639";
+}
 
-  .el-icon-self-gongzuojingyan:before {
-    content: "\e61a";
-  }
+.icon-dingwei:before {
+  content: "\e61f";
+}
 
-  .el-icon-self-edu:before {
-    content: "\e63a";
-  }
+.icon-gongzuojingyan:before {
+  content: "\e61a";
+}
 
-  .el-icon-self-touxiang:before {
-    content: "\e65f";
-  }
+.icon-caozuochenggong:before {
+  content: "\e7f8";
+}
 
-  .el-icon-self-ico:before {
-    content: "\e670";
-  }
+.icon-hot:before {
+  content: "\e647";
+}
 
-  .el-icon-self-yingpinzhiwei:before {
-    content: "\e7f9";
-  }
+.icon-touxiang:before {
+  content: "\e65f";
+}
+
+.icon-edu-line:before {
+  content: "\e63a";
+}
+
+.icon-chuntianran:before {
+  content: "\e773";
+}
+
+.icon-ico-jrxsze:before {
+  content: "\e670";
+}
+
+.icon-yingpinzhiwei-copy:before {
+  content: "\e7f9";
+}
+
