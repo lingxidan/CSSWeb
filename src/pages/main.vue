@@ -1,11 +1,8 @@
 <template>
   <div class="index">
     <!--导航栏以及轮播图-->
-    <div class="top" ref="top">
-      <topNav @login="login" @registe="registe"></topNav>
-      <div class="show">
-        <carousel></carousel>
-      </div>
+    <div class="show" ref="top">
+      <!-- <carousel></carousel> -->
     </div>
     <!--左右导航-->
     <div class="rightNav" ref="rightNav">
@@ -97,25 +94,6 @@
         </el-row>
       </div>
     </div>
-    <div class="footer">
-      <div class="main">
-        <div class="report">
-          <ul>
-            <li>侵权举报</li>
-            <li>有害信息举报</li>
-            <li>违法和不良信息举报</li>
-          </ul>
-        </div>
-        <div class="license">
-          <ul>
-            <li>电信与服务业务经营许可证</li>
-            <li>网络文化经营许可证</li>
-            <li>联系我们</li>
-          </ul>
-        </div>
-      </div>
-      <div class="bottom">师者教师志愿者招募平台 ©2019 </div>
-    </div>
     <div class="login" ref="login">
         <login @cancel="cancel"></login>
     </div>
@@ -124,7 +102,6 @@
 </template>
 
 <script>
-import topNav from '@/components/common/topNav.vue'
 import carousel from '@/components/common/carousel.vue'
 import teacher from '@/components/common/teacher.vue'
 import volunteer from '@/components/common/volunteer.vue'
@@ -135,7 +112,6 @@ import Clipboard from 'clipboard'
 
 export default {
   components: {
-    topNav,
     carousel,
     teacher,
     volunteer,
@@ -319,7 +295,7 @@ export default {
       let _info = this.panels.info
 
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-      let topHeight = _top.clientHeight
+      let topHeight = _top.clientHeight+80
       let searchHeight = _search.clientHeight
       let searchWidth = _search.clientWidth
 
@@ -331,7 +307,6 @@ export default {
         _search.style.right = "0px"
         _search.style.backgroundColor = "#fce9c7"
         _search.style.zIndex = "5"
-        _search.style.paddingBottom = "8px"
         _rightNav.style.opacity = "1"
         _leftNav.style.opacity = "1"
         _rightNav.style.display = ""
@@ -339,9 +314,8 @@ export default {
         _info.style.marginTop = searchHeight + "px"
       } else {
         _search.style.position = "relative"
-        _search.style.top = "0px"
+        // _search.style.top = "0px"
         _search.style.backgroundColor = "inherit"
-        _search.style.paddingBottom = "0"
         _rightNav.style.display = "none"
         _leftNav.style.display = "none"
         _rightNav.style.opacity = "0"
@@ -458,31 +432,30 @@ ul.registe{
   width: 100%;
   height: 100%;
   overflow: auto;
-  div.top {
+  .show {
     width: 100%;
-    background:  linear-gradient(@mainColor 40%, transparent);
-    .show {
-      padding: 10px;
-    }
+    margin: 10px 80px;
   }
 }
 .index>.main {
   position: relative;
   padding: 3px;
-  width: 80%;
+  width: 70%;
   margin: 20px;
   margin-top: 0px;
   // height: 1000px;
   .search{
-    padding-top: 10px;
+    width: 100%;
+    padding: 10px;
     transition: .3s;
     // padding-bottom: 10px;
-    .searchSel{
-      width: 10%;
-    }
-    .searchInput{
-      width: 60%;
-    }
+    // background-color: rgba(255,255,255,.5);
+    // .searchSel{
+    //   width: 10%;
+    // }
+    // .searchInput{
+    //   width: 60%;
+    // }
   }
   .info{
     position: relative;
@@ -505,9 +478,9 @@ ul.registe{
 
 .leftNav,
 .rightNav {
-  
   cursor: pointer;
   position: fixed;
+  width: 5%;
   top: 50%;
   transform: translate(0, -50%);
   opacity: 0;
@@ -548,9 +521,8 @@ ul.registe{
     color:white;
   }
 }
-
-.rightNav {
-  right: 10px;
+.rightNav{
+  right: 0;
 }
 
 #copy_url{
@@ -603,47 +575,4 @@ ul.registe{
   background-color: #fff;
 }
 
-.footer {
-  width: 100%;
-  background-color: @mainColor;
-  .main{
-    width: 100%;
-    display:flex;
-    margin-top: 20px;
-    margin-bottom: 5px;
-    .report,.license{
-      font-size: 30px;
-      width: 48%;
-      ul li{
-        height: 20px;
-        text-align: left;
-        cursor: pointer;
-        &:hover{
-        font-size: 12px;
-        font-weight: bold;
-      }
-      }
-    }
-    .report{
-      border-right:1px solid @secondColor;
-      ul{
-        margin-right:20px;
-      }
-      ul li{
-        text-align: right;
-      }
-    }
-    .license{
-      ul{
-        margin-left:20px;
-      }
-    }
-  }
-  .bottom{
-    text-align: center;
-    margin-bottom: 5px;
-    font-size: 11px;
-    font-family: @thirdFont;
-  }
-}
 </style>

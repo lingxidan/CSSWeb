@@ -15,16 +15,20 @@
   }
 }
 .search{
+  display: flex;
+
   .el-input__inner, .el-checkbox__inner, .el-textarea__inner, .el-button {
-    border-radius: 3px;
-    border-color: @mainColor;
+    border-radius: 0px;
+    border-color: @secondColor;
+    height: 50px;
+    
     // display: inline;
   }
   .el-input__inner{
-    border-right: 0px;
+    border-right: 1px @mainColor solid;
   }
   .el-icon-arrow-up:before{
-    color:@mainColor;
+    color:@secondColor;
   }
   .el-button{
     background-color: @secondColor;

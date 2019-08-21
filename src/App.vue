@@ -63,28 +63,50 @@ a {
 </style>
 <template>
   <div id="app" ref="app">
+    <!--导航栏以及轮播图-->
+    <div class="top" ref="top">
+      <topNav @login="login" @registe="registe"></topNav>
+    </div>
     <!-- <img src="./assets/logo.png"> -->
     <router-view/>
+    <!-- 页脚 -->
+    <div class="footer">
+      <div class="main">
+        <div class="report">
+          <ul>
+            <li>侵权举报</li>
+            <li>有害信息举报</li>
+            <li>违法和不良信息举报</li>
+          </ul>
+        </div>
+        <div class="license">
+          <ul>
+            <li>电信与服务业务经营许可证</li>
+            <li>网络文化经营许可证</li>
+            <li>联系我们</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom">师者教师志愿者招募平台 ©2019 </div>
+    </div>
   </div>
 </template>
 
 <script>
+import topNav from '@/components/common/topNav.vue'
 export default {
   name: 'App',
-  mounted(){
-    let screenWidth = document.documentElement.clientWidth || document.body.clientWidth
-    screenWidth = window.innerWidth
-    screenWidth = document.body.scrollWidth
-    screenWidth = window.screen.width
-    let scrollWidth = window.outerWidth-document.body.scrollWidth
-    this.$refs.app.style.width = screenWidth- scrollWidth + "px"
-  }
+  components: {
+    topNav
+  },
+  
 }
 </script>
 
 <style lang="less">
 @import '../static/css/main.less';
 #app {
+  width: 100%;
   font-family: @mainFont;
   // font-family: 'liukai';
   -webkit-font-smoothing: antialiased;
@@ -92,5 +114,55 @@ export default {
   text-align: center;
   color: #2c3e50;
   background-color: #f6f6f8;
+}
+
+
+div.top {
+  width: 100%;
+  background:  @mainColor;
+}
+
+.footer {
+  width: 100%;
+  background-color: @mainColor;
+  .main{
+    width: 100%;
+    display:flex;
+    margin-top: 20px;
+    margin-bottom: 5px;
+    .report,.license{
+      font-size: 30px;
+      width: 48%;
+      ul li{
+        height: 20px;
+        text-align: left;
+        cursor: pointer;
+        &:hover{
+        font-size: 12px;
+        font-weight: bold;
+      }
+      }
+    }
+    .report{
+      border-right:1px solid @secondColor;
+      ul{
+        margin-right:20px;
+      }
+      ul li{
+        text-align: right;
+      }
+    }
+    .license{
+      ul{
+        margin-left:20px;
+      }
+    }
+  }
+  .bottom{
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-family: @thirdFont;
+  }
 }
 </style>

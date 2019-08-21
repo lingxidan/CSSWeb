@@ -83,7 +83,7 @@ export default {
     margin-bottom: 5px;
     height: 50%;
     line-height: 26px;
-    font-family: @thirdFont;
+    // font-family: @thirdFont;
   }
   .require{
     color: #aaa;
