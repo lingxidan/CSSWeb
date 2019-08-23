@@ -81,9 +81,9 @@ a {
         </div>
         <div class="license">
           <ul>
-            <li>电信与服务业务经营许可证</li>
-            <li>网络文化经营许可证</li>
             <li>联系我们</li>
+            <li>网络文化经营许可证</li>
+            <li>电信与服务业务经营许可证</li>
           </ul>
         </div>
       </div>
@@ -124,6 +124,9 @@ div.top {
 
 .footer {
   width: 100%;
+  margin-top: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   background-color: @mainColor;
   .main{
     width: 100%;
@@ -131,14 +134,15 @@ div.top {
     margin-top: 20px;
     margin-bottom: 5px;
     .report,.license{
-      font-size: 30px;
+      // font-size: 30px;
       width: 48%;
       ul li{
-        height: 20px;
+        font-size: 14px;
+        height: 24px;
         text-align: left;
         cursor: pointer;
         &:hover{
-        font-size: 12px;
+        font-size: 14px;
         font-weight: bold;
       }
       }
@@ -159,10 +163,14 @@ div.top {
     }
   }
   .bottom{
+    cursor: pointer;
     text-align: center;
     margin-bottom: 5px;
-    font-size: 11px;
+    font-size: 16px;
     font-family: @thirdFont;
+    &:hover{
+      color: @hoverColor;
+    }
   }
 }
 </style>

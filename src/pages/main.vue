@@ -314,7 +314,6 @@ export default {
         _info.style.marginTop = searchHeight + "px"
       } else {
         _search.style.position = "relative"
-        // _search.style.top = "0px"
         _search.style.backgroundColor = "inherit"
         _rightNav.style.display = "none"
         _leftNav.style.display = "none"

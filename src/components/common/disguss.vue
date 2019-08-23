@@ -74,7 +74,7 @@ export default {
     transition: .2s;
   }
   .title{
-    width: 70%;
+    width: 60%;
     margin-right: 30px;
     display: flex;
     flex-direction: column;
