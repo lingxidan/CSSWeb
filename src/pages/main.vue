@@ -554,21 +554,22 @@ ul.registe{
     letter-spacing: 20px;
     font-size: 25px;
     background: url('../../static/img/nav_bc.png') no-repeat center;
-    color: rgb(255,255,255,1);
+    // color: rgb(255,255,255,1);
     font-family: @secondFont;
+    color:#f7f7f7;
     // border-radius: 5px;
   }
-  .title:before{
-    content: "";
-    position: absolute;
-    left:0;
-    width:100%;
-    height: 100%;
-    background-color: rgba(255,255,255,.2);
-  }
-  .title:hover{
-    color:@mainColor;
-  }
+  // .title:before{
+  //   content: "";
+  //   position: absolute;
+  //   left:0;
+  //   width:100%;
+  //   height: 100%;
+  //   background-color: rgba(255,255,255,.2);
+  // }
+  // .title:hover{
+  //   color:@mainColor;
+  // }
 }
 .elTabs{
   background-color: #fff;

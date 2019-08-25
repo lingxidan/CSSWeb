@@ -78,7 +78,7 @@
           <div class="partContent">
             <div class="shejiaoContent" v-for="(shejiao,idx) in teacher.shejiao" :key="idx">
                 <i class="el-icon-monitor"></i>
-                {{shejiao.name}}
+                <p>{{shejiao.name}}</p>
             </div>
           </div>
         </div>
@@ -132,11 +132,11 @@
         <div class="jianli">
           <div class="title">附件简历</div>
           <div class="partContent">
-            <div class="zhiweiContent" v-if="teacher.jianli.length<0" :key="idx">
+            <div class="jianliContent" v-if="teacher.jianli.length<0" :key="idx">
               
             </div>
-            <div class="zhiweiContent" v-for="(jianli,idx) in teacher.jianli" :key="idx">
-              <i class="el-icon-self-yingpinzhiwei"></i>
+            <div class="jianliContent" v-for="(jianli,idx) in teacher.jianli" :key="idx">
+              <i class="el-icon-document"></i>
               {{jianli.name}}
             </div>
           </div>
@@ -242,6 +242,9 @@ export default {
           name:"https://baike.baidu.com/item/%E6%9B%BE%E5%B0%8F%E8%B4%A4/1926595?fr=aladdin"
         },{
           name:"https://baike.baidu.com/item/%E6%9B%BE%E5%B0%8F%E8%B4%A4/1926595?fr=aladdin"
+        }],
+        jianli:[{
+          name:"附件简历_1"
         }]
       }
     }
@@ -265,7 +268,7 @@ export default {
 .volInfo{
       // background-color: #fafafa;
   .content{
-    margin-top: 30px;
+    margin: 30px;
     display: flex;
     // align-items: center;
     justify-content: center;
@@ -275,7 +278,7 @@ export default {
       background-color: #fff;
       width: 46%;
       padding: 30px 30px;
-      margin-right: 20px;
+      margin-right: 10px;
       .part{
         padding: 6px 30px;
         margin-bottom: 10px;
@@ -317,13 +320,13 @@ export default {
         .jingliContent{
           margin-top: 6px;
           padding: 5px 5px 5px 8px;
-          border: 2px solid transparent;
+          border: 1px solid transparent;
           &:first-of-type{
             margin-top: 0;
           }
         }
         .jingliContent:hover{
-          border: 2px solid @mainColor;
+          border: 1px solid @mainColor;
         }
         .gongsi,.zhiwei,.neirong,.yeji{
           padding: 3px;
@@ -352,13 +355,13 @@ export default {
         .jiaoyuContent{
           margin-top: 6px;
           padding: 5px 5px 5px 8px;
-          border: 2px solid transparent;
+          border: 1px solid transparent;
           &:first-of-type{
             margin-top: 0;
           }
         }
         .jiaoyuContent:hover{
-          border: 2px solid @mainColor;
+          border: 1px solid @mainColor;
         }
         .gongsi,.zhiwei,.neirong{
           padding: 3px;
@@ -395,9 +398,15 @@ export default {
       }
       .shejiao{
         .shejiaoContent{
-          height: 35px;
-          line-height: 35px;
+          display: flex;
+          align-items: center;
+          // height: 35px;
+          // line-height: 35px;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
           i{
+            font-size: 16px;
             margin-right: 10px;
           }
         }
@@ -405,13 +414,14 @@ export default {
         // background-color: rgb(102, 18, 18);
       }
     }
-    .self{
+    .self,.jianli{
+      margin-bottom: 10px;
       // width: 210px;
-      height: 260px;
+      // height: 260px;
       // background-color: rgba(0, 100, 0);
       display: flex;
       flex-direction: column;
-      padding: 30px;
+      padding: 20px;
       // background: rgb(250, 250, 250);
       // box-shadow: 0 0 5px 0 @mainColor;
       background-color: #fff;
@@ -422,35 +432,50 @@ export default {
           display: inline-block;
         }
         .show{
-          font-size: 24px;
+          font-size: 22px;
           font-weight: bold;
           line-height: 30px;
           letter-spacing: 3px;
         }
         .sex{
-          border: 1px solid @secondColor;
-          color:  @secondColor;
-          font-size: 18px;
+          // border: 1px solid @secondColor;
+          background-color:  @secondColor;
+          font-size: 12px;
           font-weight: bolder;
-          line-height: 30px;
-          width: 30px;
+          line-height: 16px;
+          width: 16px;
           text-align: center;
           border-radius: 50% 50% 50% 0;
           margin-left: 5px;
+          color: #f7f7f7;
         }
       }
       .base{
         margin-top: 15px;
         p{
           text-align: left;
-          height: 40px;
+          padding: 5px 0;
+          // height: 40px;
           // font-weight: 600;
-          font-size: 16px;
+          font-size: 15px;
           label{
             font-weight: normal;
             color:#ccc;
-            font-size: 16px;
+            font-size: 15px;
           }
+        }
+      }
+    }
+    .jianli{
+      .title{
+        font-size: 16px;
+        font-weight: bold;
+        text-align: left;
+      }
+      .partContent{
+        margin-top: 10px;
+        .jianliContent{
+          text-align: left;
         }
       }
     }

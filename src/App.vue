@@ -99,6 +99,18 @@ export default {
   components: {
     topNav
   },
+  methods:{
+    registe(opt){
+      console.log(opt)
+      this.$router.push('/registe/'+opt)
+    },
+    login(){
+      let _login = this.panels.login
+      _login.style.display ="block"
+      // this.$router.push('/login')
+    },
+
+  }
   
 }
 </script>
@@ -124,9 +136,8 @@ div.top {
 
 .footer {
   width: 100%;
-  margin-top: 5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   background-color: @mainColor;
   .main{
     width: 100%;

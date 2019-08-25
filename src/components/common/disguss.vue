@@ -81,14 +81,14 @@ export default {
     .name{
       text-align: left;
       height: 30px;
-      font-size:22px;
+      font-size:18px;
       font-weight: bold;
       margin-bottom: 15px;
     }
     .content{
       width: 100%;
       height: 100px;
-      font-size: 18px;
+      font-size: 14px;
       text-align: left;
       overflow: hidden;
       text-overflow:ellipsis;
@@ -108,11 +108,14 @@ export default {
       }
     }
   }
-  .image img{
-    width: 300px;
-    // height: 100px;
-    height: 100%;
-    border-radius: 5px;
+  .image{ 
+     width: 40%;
+    img{
+      width: 100%;
+      // height: 100px;
+      // height: 100%;
+      border-radius: 5px;
+    }
   }
 
 }

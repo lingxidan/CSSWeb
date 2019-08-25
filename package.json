@@ -29,7 +29,8 @@
     "vue": "^2.5.11",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.1",
-    "webpack-merge": "^4.2.1"
+    "webpack-merge": "^4.2.1",
+    "websocket-driver": "^0.7.3"
   },
   "browserslist": [
     "> 1%",

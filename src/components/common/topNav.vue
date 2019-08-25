@@ -42,6 +42,7 @@ a{
   cursor: pointer;
 }
 .main{
+  font-size: 16px;
   // background-color: rgba(255, 255, 255, 0.6);
   // background-color: rgba(252,233,199);
   // background-color: rgba(231, 206, 158, 0.7);
@@ -51,10 +52,10 @@ a{
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
+  // height: 40px;
   img{
   	// width:80px;
-    height:50px;
+    height:26px;
     vertical-align:middle;
     margin-right: 80px;
   }
@@ -69,8 +70,8 @@ a{
   }
   a{
     position: relative;
-    line-height:30px;
-    height:30px;
+    line-height:20px;
+    height:20px;
     width: 90px;
     text-align: center;
     // font-size: 13px;
@@ -83,7 +84,7 @@ a{
     a{
       color:whitesmoke;
       border: 1px solid transparent;
-      font-size: 17px;
+      font-size: 14px;
     }
     a:hover{
       // box-shadow: 0 0 3px 2px white;
@@ -99,6 +100,8 @@ a{
       border-radius: 20px 0 20px 0;
       color:#472600;
       font-weight: bold;
+      
+      font-size: 14px;
       letter-spacing: 1px;
       margin-right: 5px;
       &:first-of-type{
@@ -123,7 +126,6 @@ a{
       height: 25px;
       border:0;
       border-radius: 10px;
-      font-size: 20px;
       line-height: 20px;
       // font-family: @ssecondFont;
       // border-bottom: 1px solid #753e00;
