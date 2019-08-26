@@ -1,12 +1,12 @@
 <template>
-  <div class="selfSch">
+  <div class="main">
 
   </div>
 </template>
 
 <script>
 export default {
-  name: 'selfSch',
+  name: '',
   data() { 
     return {
 
@@ -27,5 +27,5 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.selfSch{}
+.main{}
 </style>

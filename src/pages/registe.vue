@@ -145,7 +145,11 @@ export default {
     },
     registe(){
       let identy = this.registeForm.identy
-      this.$router.push('/user/'+identy)
+      if(identy == "school"){
+        this.$router.push('/user/school/schInfo')
+      }else{
+        this.$router.push('/user/'+identy)
+      }
     }
   },
  }

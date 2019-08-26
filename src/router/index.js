@@ -10,7 +10,10 @@ import chat from '@/pages/chat'
 // 个人信息页
 import user from '@/pages/user/user'
 import selfVol from '@/pages/user/self-volunteer'
-import selfSch from '@/pages/user/self-school'
+import selfSch from '@/pages/user/school/self-school'
+import schInfo from '@/pages/user/school/school'
+import zhiweiInfo from '@/pages/user/school/zhiwei'
+import schUser from '@/pages/user/school/selfInfo'
 
 import lunbo from '@/components/common/carousel'
 // import topNav from '@/components/common/nav'
@@ -49,15 +52,26 @@ const router = new Router({
                 {
 					path: 'school',
 					name: 'selfSch',
-					component: selfSch
+                    component: selfSch,
+                    children:[
+                        {
+                            path: 'school',
+                            name: 'schInfo',
+							component: () => import('../pages/user/school/school.vue')
+                        },
+                        {
+                            path: 'zhiwei',
+                            name: 'zhiweiInfo',
+                            component: zhiweiInfo
+                        },
+                        {
+                            path: 'user',
+                            name: 'schUser',
+                            component: schUser
+                        }
+                    ]
                 }
             ]
-        },
-        {
-            // 注册招募页面
-            path: '/registe/school',
-            name: 'registeSchool',
-            component: registe
         },
         {
             // 注册招募页面
