@@ -1,16 +1,16 @@
 <template>
   <div class="selfSch">
     <el-menu
-      default-active="/user/school/schInfo"
+      default-active="/user/school/school"
       class="el-menu-vertical-demo"
       background-color="#fce9c7"
       active-text-color="#fba400"
       router>
-      <el-menu-item index="/user/school/schInfo">
+      <el-menu-item index="/user/school/school">
         <i class="el-icon-self-edu"></i>
         <span>学校信息</span>
       </el-menu-item>
-      <el-menu-item index="/user/school/zhiweiInfo">
+      <el-menu-item index="/user/school/zhiwei">
         <i class="el-icon-menu"></i>
         <span slot="title">招募职位</span>
       </el-menu-item>
@@ -18,7 +18,7 @@
         <i class="el-icon-self-taolunhui"></i>
         <span slot="title">聊天室</span>
       </el-menu-item>
-      <el-menu-item index="/user/school/schUser">
+      <el-menu-item index="/user/school/user">
         <i class="el-icon-setting"></i>
         <span slot="title">个人信息</span>
       </el-menu-item>
@@ -74,14 +74,17 @@ export default {
     }
   }
   .main{
-    width: 100%;
+    position: relative;
+    padding:20px 30px 20px 20px;
+    // right: 30px;
+    width: 88%;
     height: 100%;
-    background-color: red;
   }
 }
 </style>
 <style lang="less">
 .selfSch{
+  display: flex;
   i{
     // color: ;
   }

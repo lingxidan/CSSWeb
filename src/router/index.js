@@ -57,7 +57,7 @@ const router = new Router({
                         {
                             path: 'school',
                             name: 'schInfo',
-							component: () => import('../pages/user/school/school.vue')
+                            component: schInfo
                         },
                         {
                             path: 'zhiwei',

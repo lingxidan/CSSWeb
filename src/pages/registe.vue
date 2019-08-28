@@ -146,7 +146,7 @@ export default {
     registe(){
       let identy = this.registeForm.identy
       if(identy == "school"){
-        this.$router.push('/user/school/schInfo')
+        this.$router.push('/user/school/school')
       }else{
         this.$router.push('/user/'+identy)
       }
