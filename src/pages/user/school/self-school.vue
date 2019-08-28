@@ -14,7 +14,7 @@
         <i class="el-icon-menu"></i>
         <span slot="title">招募职位</span>
       </el-menu-item>
-      <el-menu-item index="/user/school/">
+      <el-menu-item index="/user/school/chat">
         <i class="el-icon-self-taolunhui"></i>
         <span slot="title">聊天室</span>
       </el-menu-item>
@@ -62,10 +62,10 @@ export default {
     // color: ;
   }
   .el-menu-vertical-demo{
-    width: 8%;
+    width: 10%;
     padding:5px 0;
     span{
-      font-size: 16px;
+      font-size: 14px;
       letter-spacing: 1px;
       font-weight: bold;
     }
@@ -77,7 +77,7 @@ export default {
     position: relative;
     padding:20px 30px 20px 20px;
     // right: 30px;
-    width: 88%;
+    width: 85%;
     height: 100%;
   }
 }

@@ -46,12 +46,12 @@ export default {
       tableTitles:[{
           prop: "schoolName",
           label: "学校名称",
-          width: "230",
+          width: "170",
           fixed: true,
         },{
           prop: "schoolAddr",
           label: "学校地址",
-          width: "230"
+          width: "170"
         },{
           prop: "schoolScale",
           label: "学校规模",
@@ -63,7 +63,7 @@ export default {
         },{
           prop: "schoolDesc",
           label: "学校简介",
-          // width: "180"
+          width: "230"
         }],
       tableConf:{
         // 表格按钮操作列(是否需要，列头，操作按钮列表)
@@ -111,14 +111,14 @@ export default {
       inputData:[{
           placeholder: "学校名称",
           model: "schoolName",
-          width: 200
+          width: 170
         }],
       selectDataAddr: [{
           placeholder: "省",
           model: "province",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -151,7 +151,7 @@ export default {
           model: "city",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -181,7 +181,7 @@ export default {
           model: "town",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -197,7 +197,7 @@ export default {
           model: "scale",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -237,14 +237,14 @@ export default {
   h1{
     font-weight: bold;
     letter-spacing: 2px;
-    font-size: 22px;
+    font-size: 20px;
   }
   .schoolTop{
     width: 100%;
     display: flex;
     .feature{
       margin-left: 30px;
-      width: 27%;
+      width: 10%;
       display: flex;
       align-items: center;
     }

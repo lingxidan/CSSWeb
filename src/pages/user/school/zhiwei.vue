@@ -46,12 +46,12 @@ export default {
       tableTitles:[{
           prop: "zhiweiName",
           label: "职位名称",
-          width: "230",
+          width: "170",
           fixed: true,
         },{
           prop: "zhiweiSch",
           label: "所属学校",
-          width: "230"
+          width: "170"
         },{
           prop: "zhiweiScale",
           label: "招募人数",
@@ -63,7 +63,7 @@ export default {
         },{
           prop: "zhiweiDesc",
           label: "职位描述",
-          // width: "180"
+          width: "230"
         }],
       tableConf:{
         // 表格按钮操作列(是否需要，列头，操作按钮列表)
@@ -87,7 +87,15 @@ export default {
           }
         },{
           id:"delete",
-          text:"删除职位",
+          text:"关闭职位",
+          size:"medium",
+          type:"primary",
+          click:(val)=>{
+            console.log(val)
+          }
+        },{
+          id:"delete",
+          text:"重新发布",
           size:"medium",
           type:"primary",
           click:(val)=>{
@@ -103,14 +111,14 @@ export default {
       inputData:[{
           placeholder: "职位名称",
           model: "zhiweiName",
-          width: 200
+          width: 170
         }],
       selectDataAddr: [{
           placeholder: "省",
           model: "province",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -143,7 +151,7 @@ export default {
           model: "city",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -173,7 +181,7 @@ export default {
           model: "town",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -189,7 +197,7 @@ export default {
           model: "school",
           label: "name",
           value: "code",
-          width: 200,
+          width: 170,
           change: (val) => {
             let _this = this
             if (!val) {
@@ -236,7 +244,7 @@ export default {
     display: flex;
     .feature{
       margin-left: 30px;
-      width: 27%;
+      width: 10%;
       display: flex;
       align-items: center;
     }

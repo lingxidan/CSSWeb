@@ -68,7 +68,12 @@ const router = new Router({
                             path: 'user',
                             name: 'schUser',
                             component: schUser
-                        }
+                        },
+                        {
+                            path: 'chat',
+                            name: 'schChat',
+                            component: chat
+                        },
                     ]
                 }
             ]

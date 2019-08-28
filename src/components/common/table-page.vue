@@ -18,7 +18,7 @@
     <el-table-column
       type="index"
       label="序号"
-      width="80"
+      width="50"
       align="center"
       fixed="left">
     </el-table-column>
