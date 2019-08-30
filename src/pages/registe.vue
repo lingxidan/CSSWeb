@@ -128,8 +128,8 @@ export default {
   },
   mounted() {
     // console.log(this.user)
-    let screenWidth = document.documentElement.clientHeight || document.body.clientHeight
-    this.$refs.registe.style.height = screenWidth + "px"
+    let clientHeight = document.documentElement.clientHeight || document.body.clientHeight
+    this.$refs.registe.style.height = clientHeight + "px"
     this.panels.codeBtn = this.$refs.code
     console.log()
   },

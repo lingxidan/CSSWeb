@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 import app from '@/App.vue'
+import front from '@/frontApp.vue'
 import main from '@/pages/main'
 // import login from '@/pages/login'
 import registe from '@/pages/registe'
@@ -18,15 +19,133 @@ import schUser from '@/pages/user/school/selfInfo'
 import lunbo from '@/components/common/carousel'
 // import topNav from '@/components/common/nav'
 
+// 后台数据管理
+import back from '@/backApp.vue'
+import backLogin from '@/pages/manager/login.vue'
+import backSchool from '@/pages/manager/tableInfo/school.vue'
+import backZhiwei from '@/pages/manager/tableInfo/zhiwei.vue'
+
 Vue.use(Router)
 
 const router = new Router({
-    routes: [{
+    routes: [
+        {
             // 主页
             path: '/',
-            name: 'main',
-            component: main
+            name: 'front',
+            component: front,
+            children:[
+				{
+                    // 主页
+                    path: '/',
+                    name: 'main',
+                    component: main
+                },
+                {
+                    path: '/user',
+                    name: 'user',
+                    component: user,
+                    children:[
+                        {
+                            path: 'volunteer',
+                            name: 'selfVol',
+                            component: selfVol
+                        },
+                        {
+                            path: 'school',
+                            name: 'selfSch',
+                            component: selfSch,
+                            children:[
+                                {
+                                    path: 'school',
+                                    name: 'schInfo',
+                                    component: schInfo
+                                },
+                                {
+                                    path: 'zhiwei',
+                                    name: 'zhiweiInfo',
+                                    component: zhiweiInfo
+                                },
+                                {
+                                    path: 'user',
+                                    name: 'schUser',
+                                    component: schUser
+                                },
+                                {
+                                    path: 'chat',
+                                    name: 'schChat',
+                                    component: chat
+                                },
+                            ]
+                        }
+                    ]
+                },
+            ]
         },
+        {
+            // 后台管理系统登录
+            path: '/back',
+            name: 'back',
+            component: backLogin
+        },
+        {
+            // 主页
+            path: '/manager',
+            name: 'manager',
+            component: back,
+            children:[
+                {
+                    path: 'school',
+                    name: 'backSchool',
+                    component: backSchool
+                },
+                {
+                    path: 'zhiwei',
+                    name: 'backZhiwei',
+                    component: backZhiwei,
+                },
+                {
+                    path: '/user',
+                    name: 'user',
+                    component: user,
+                    children:[
+                        {
+                            path: 'school',
+                            name: 'backSchool',
+                            component: backSchool
+                        },
+                        {
+                            path: 'zhiwei',
+                            name: 'backZhiwei',
+                            component: backZhiwei,
+                            children:[
+                                {
+                                    path: 'school',
+                                    name: 'schInfo',
+                                    component: schInfo
+                                },
+                                {
+                                    path: 'zhiwei',
+                                    name: 'zhiweiInfo',
+                                    component: zhiweiInfo
+                                },
+                                {
+                                    path: 'user',
+                                    name: 'schUser',
+                                    component: schUser
+                                },
+                                {
+                                    path: 'chat',
+                                    name: 'schChat',
+                                    component: chat
+                                },
+                            ]
+                        }
+                    ]
+                },
+            ]
+        },
+        
         // {
         //  // 主页
         //   path: '/',
@@ -39,45 +158,7 @@ const router = new Router({
         //     name: 'login',
         //     component: login
         // },
-        {
-			path: '/user',
-			name: 'user',
-			component: user,
-			children:[
-				{
-					path: 'volunteer',
-					name: 'selfVol',
-					component: selfVol
-                },
-                {
-					path: 'school',
-					name: 'selfSch',
-                    component: selfSch,
-                    children:[
-                        {
-                            path: 'school',
-                            name: 'schInfo',
-                            component: schInfo
-                        },
-                        {
-                            path: 'zhiwei',
-                            name: 'zhiweiInfo',
-                            component: zhiweiInfo
-                        },
-                        {
-                            path: 'user',
-                            name: 'schUser',
-                            component: schUser
-                        },
-                        {
-                            path: 'chat',
-                            name: 'schChat',
-                            component: chat
-                        },
-                    ]
-                }
-            ]
-        },
+        
         {
             // 注册招募页面
             path: '/registe/school',
