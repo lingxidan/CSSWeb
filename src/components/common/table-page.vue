@@ -1,6 +1,6 @@
 <template>
 <div class="table-cont" ref="tableCont" v-loading="isLoading">
-  <el-table ref="elTb" v-if="!isLoading" :data="tableData" :stripe="tableConf.stripe" :border="tableConf.border" :cell-style="tableCellStyle" :header-cell-style="tableHeaderColor" :max-height="600"
+  <el-table ref="elTb" v-if="!isLoading" :data="tableData" :stripe="tableConf.stripe" :border="tableConf.border" :cell-style="tableCellStyle" :header-cell-style="tableHeaderColor" :max-height="900"
   :span-method="tableConf.spanMethod">
     <el-table-column v-if="tableConf.expand" type="expand" fixed="left">
         <template v-if="tableConf.expand" slot-scope="props">
@@ -50,7 +50,7 @@
 
     </template>
     <el-table-column fixed="right" label="操作" v-if="tableConf.operation?tableConf.operation:false" class="btnCol" 
-    :width="tableConf.operation?150*tableConf.btns.length:0">
+    :width="tableConf.operation?115*tableConf.btns.length:0">
       <template v-if="tableConf.operaHeader" slot="header" slot-scope="scope">
         <el-button :id="tableConf.operaHeader.id" @click="tableConf.operaHeader.click(scope.row)" :size="tableConf.operaHeader.size" :type="tableConf.operaHeader.type" plain>{{tableConf.operaHeader.text}}</el-button>
       </template>
