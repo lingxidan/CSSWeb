@@ -1,66 +1,3 @@
-<!-- <template>
-  <div id="app">
-    <img src="@/assets/logo.png">
-    <span>{{msg}}</span>
-    <span>{{html}}</span>
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
-  </div>
-</template> -->
-
-<script>
-// export default {
-//   name: 'app',
-//   data () {
-//     return {
-//       // html:'<p>html-vue</p>',
-//       msg: 'Welcome to Your Vue.js App'
-//     }
-//   }
-// }
-</script>
-
-<style>
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-} */
-</style>
 <template>
   <div class="app" ref="app">
     <div class="main">
@@ -72,37 +9,46 @@ a {
         <el-menu
           default-active="/manager/school"
           class="el-menu-vertical-demo"
-          background-color="#fce9c7"
+          background-color="#2b261e"
+          text-color="#fce9c7"
           active-text-color="#fba400"
           router>
           <el-menu-item index="/manager/school">
-            <i class="el-icon-self-edu"></i>
-            <span>学校信息</span>
+            <i class="el-icon-school"></i>
+            <span>学校</span>
           </el-menu-item>
           <el-menu-item index="/manager/zhiwei">
-            <i class="el-icon-menu"></i>
-            <span slot="title">招募职位</span>
+            <i class="el-icon-notebook-2"></i>
+            <span slot="title">职位</span>
           </el-menu-item>
-          <el-menu-item index="/manager/chat">
-            <i class="el-icon-self-taolunhui"></i>
-            <span slot="title">聊天室</span>
+          <el-menu-item index="/manager/volunteer">
+            <i class="el-icon-user"></i>
+            <span>志愿者</span>
           </el-menu-item>
-          <el-menu-item index="/manager/user">
-            <i class="el-icon-setting"></i>
-            <span slot="title">个人信息</span>
+          <el-menu-item index="/manager/recruiter">
+            <i class="el-icon-help"></i>
+            <span>招募者</span>
+          </el-menu-item>
+          <el-menu-item index="/manager/articles">
+            <i class="el-icon-document"></i>
+            <span slot="title">文章</span>
+          </el-menu-item>
+          <el-menu-item index="/manager/posts">
+            <i class="el-icon-s-promotion"></i>
+            <span slot="title">帖子</span>
           </el-menu-item>
         </el-menu>
       </div>
       <div class="content">
         <router-view/>
+        <!-- 页脚 -->
+        <div class="footer">
+          <div class="bottom">师者教师志愿者招募平台 ©2019 </div>
+        </div>
       </div>
 
     </div>
     <!-- <img src="./assets/logo.png"> -->
-    <!-- 页脚 -->
-    <div class="footer">
-      <div class="bottom">师者教师志愿者招募平台 ©2019 </div>
-    </div>
   </div>
 </template>
 
@@ -140,28 +86,26 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
 }
 
-
-div.top {
-  width: 100%;
-  background:  @mainColor;
-  .title{
-    font-size: 30px;
-    margin-top: 10px;
-    font-weight: bolder;
-    color: white;
-    text-shadow: @secondColor 0 0 5px;
-  }
-}
 div.main{
   display: flex;
+  .top {
+    width: 10%;
+    background:  #2b261e;
+    .title{
+      font-size: 30px;
+      margin-top: 10px;
+      font-weight: bolder;
+      color: white;
+      text-shadow: @secondColor 0 0 5px;
+    }
+  }
   .content{
     position: relative;
     padding:20px 30px 20px 20px;
     // right: 30px;
-    width: 85%;
+    width: 86%;
     height: 100%;
   }
 }
@@ -169,7 +113,7 @@ div.main{
   width: 100%;
   padding-top: 3px;
   padding-bottom: 3px;
-  background-color: @mainColor;
+  // background-color: #251801;
   .main{
     width: 100%;
     display:flex;
@@ -205,14 +149,10 @@ div.main{
     }
   }
   .bottom{
-    cursor: pointer;
     text-align: center;
     margin-bottom: 5px;
     font-size: 16px;
     font-family: @thirdFont;
-    &:hover{
-      color: @hoverColor;
-    }
   }
 }
 </style>

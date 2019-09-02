@@ -24,6 +24,10 @@ import back from '@/backApp.vue'
 import backLogin from '@/pages/manager/login.vue'
 import backSchool from '@/pages/manager/tableInfo/school.vue'
 import backZhiwei from '@/pages/manager/tableInfo/zhiwei.vue'
+import backVolunteer from '@/pages/manager/tableInfo/volunteer.vue'
+import backRecruiter from '@/pages/manager/tableInfo/recruiter.vue'
+import backArticles from '@/pages/manager/tableInfo/articles.vue'
+import backPosts from '@/pages/manager/tableInfo/posts.vue'
 
 Vue.use(Router)
 
@@ -105,43 +109,24 @@ const router = new Router({
                     component: backZhiwei,
                 },
                 {
-                    path: '/user',
-                    name: 'user',
-                    component: user,
-                    children:[
-                        {
-                            path: 'school',
-                            name: 'backSchool',
-                            component: backSchool
-                        },
-                        {
-                            path: 'zhiwei',
-                            name: 'backZhiwei',
-                            component: backZhiwei,
-                            children:[
-                                {
-                                    path: 'school',
-                                    name: 'schInfo',
-                                    component: schInfo
-                                },
-                                {
-                                    path: 'zhiwei',
-                                    name: 'zhiweiInfo',
-                                    component: zhiweiInfo
-                                },
-                                {
-                                    path: 'user',
-                                    name: 'schUser',
-                                    component: schUser
-                                },
-                                {
-                                    path: 'chat',
-                                    name: 'schChat',
-                                    component: chat
-                                },
-                            ]
-                        }
-                    ]
+                    path: 'volunteer',
+                    name: 'backVolunteer',
+                    component: backVolunteer
+                },
+                {
+                    path: 'recruiter',
+                    name: 'backRecruiter',
+                    component: backRecruiter,
+                },
+                {
+                    path: 'articles',
+                    name: 'backArticles',
+                    component: backArticles
+                },
+                {
+                    path: 'posts',
+                    name: 'backPosts',
+                    component: backPosts,
                 },
             ]
         },
